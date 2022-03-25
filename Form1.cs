@@ -34,15 +34,15 @@ namespace OOP_LAB1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (UsernameField.Text != "user" && PasswordField.Text != "user" ||
-                UsernameField.Text != "admin" && PasswordField.Text != "admin"
+            if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
+                (UsernameField.Text == "admin" && PasswordField.Text == "admin")
                 )
             {
-                MessageBox.Show("There is no user found with this informations");
+                MessageBox.Show("Wait for next week");
             }
             else
             {
-                MessageBox.Show("Wait for next week");
+                MessageBox.Show("There is no user found with this informations");
             }
         }
 
