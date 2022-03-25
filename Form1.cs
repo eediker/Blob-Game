@@ -34,6 +34,20 @@ namespace OOP_LAB1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (UsernameField.Text != "user" && PasswordField.Text != "user" ||
+                UsernameField.Text != "admin" && PasswordField.Text != "admin"
+                )
+            {
+                MessageBox.Show("There is no user found with this informations");
+            }
+            else
+            {
+                MessageBox.Show("Wait for next week");
+            }
+        }
+
+        private void PasswordField_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

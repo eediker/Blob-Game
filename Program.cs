@@ -24,7 +24,7 @@ namespace OOP_LAB1
     {
         private string username;
         public string password;
-        Admin(string username = "admin",string password = "admin")
+        public Admin(string username = "admin",string password = "admin")
         {
             Username = username;
             Password = password;
@@ -46,7 +46,7 @@ namespace OOP_LAB1
     {
         private string username;
         public string password;
-        User(string username = "user", string password = "user")
+        public User(string username = "user", string password = "user")
         {
             Username = username;
             Password = password;

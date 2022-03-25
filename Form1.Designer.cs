@@ -78,6 +78,7 @@
             this.PasswordField.PasswordChar = '*';
             this.PasswordField.Size = new System.Drawing.Size(147, 20);
             this.PasswordField.TabIndex = 3;
+            this.PasswordField.TextChanged += new System.EventHandler(this.PasswordField_TextChanged);
             // 
             // LogIn
             // 
