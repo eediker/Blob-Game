@@ -1,0 +1,11 @@
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\bin\Debug\OOP-LAB1.exe.config
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\bin\Debug\OOP-LAB1.exe
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\bin\Debug\OOP-LAB1.pdb
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB.csproj.SuggestedBindingRedirects.cache
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.Form1.resources
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.Properties.Resources.resources
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB.csproj.GenerateResource.cache
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB1.exe
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB1.pdb
