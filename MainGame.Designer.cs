@@ -33,7 +33,7 @@
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(214, 206);
+            this.SettingsButton.Location = new System.Drawing.Point(12, 12);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(99, 23);
             this.SettingsButton.TabIndex = 0;
@@ -48,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.SettingsButton);
             this.Name = "MainGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
             this.ResumeLayout(false);
 

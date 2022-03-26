@@ -10,3 +10,4 @@ C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB1.exe
 C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP-LAB1.pdb
 C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.LogIn.resources
 C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.MainGame.resources
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.Settings.resources
