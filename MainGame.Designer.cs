@@ -33,7 +33,7 @@
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(221, 204);
+            this.SettingsButton.Location = new System.Drawing.Point(214, 206);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(99, 23);
             this.SettingsButton.TabIndex = 0;
