@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace OOP_LAB1
 {
@@ -65,4 +66,21 @@ namespace OOP_LAB1
         }
 
     }
+
+    public class Output
+    {
+        private string filename;
+        public Output(string filename = "NewFile")
+        {
+            this.filename = filename;
+        }
+
+        public string Filename
+        {
+            get { return filename;}
+            set { filename = value; }
+        }
+    }
+
+
 }
