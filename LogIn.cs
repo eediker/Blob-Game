@@ -34,9 +34,14 @@ namespace OOP_LAB1
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
-                (UsernameField.Text == "admin" && PasswordField.Text == "admin")
-                )
+            User user = new User();
+            Admin admin = new Admin();
+            bool Flag = 
+                (UsernameField.Text == user.Username && PasswordField.Text == user.Password)
+                ||
+                (UsernameField.Text == admin.Password && PasswordField.Text == admin.Password);
+
+            if (Flag)
             {
                 this.Hide();
                 var MainGame = new MainGame();
