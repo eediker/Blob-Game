@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OOP_LAB1
 {
-    public partial class Form1 : Form
+    public partial class LogIn : Form
     {
-        public Form1()
+        public LogIn()
         {
             InitializeComponent();
         }
@@ -32,13 +32,16 @@ namespace OOP_LAB1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LogInButton_Click(object sender, EventArgs e)
         {
             if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
                 (UsernameField.Text == "admin" && PasswordField.Text == "admin")
                 )
             {
-                MessageBox.Show("Wait for next week");
+                this.Hide();
+                var MainGame = new MainGame();
+                MainGame.Closed += (s, args) => this.Close();
+                MainGame.Show();
             }
             else
             {
@@ -49,6 +52,23 @@ namespace OOP_LAB1
         private void PasswordField_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LogInButton_KeyDown(object sender, KeyEventArgs e)
+        {
+                if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
+                (UsernameField.Text == "admin" && PasswordField.Text == "admin")
+                )
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.Show();
+                }
+                else
+                {
+                    MessageBox.Show("There is no user found with this informations");
+                }
         }
     }
 }

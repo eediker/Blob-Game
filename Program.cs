@@ -16,7 +16,7 @@ namespace OOP_LAB1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new LogIn());
         }
     }
 
@@ -45,7 +45,7 @@ namespace OOP_LAB1
     public class User
     {
         private string username;
-        public string password;
+        private string password;
         public User(string username = "user", string password = "user")
         {
             Username = username;
