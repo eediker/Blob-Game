@@ -43,6 +43,8 @@ namespace OOP_LAB1
 
             if (Flag)
             {
+                Output output = new Output("UserSettings");
+                output.GiveOutput(UsernameField.Text + "," + PasswordField.Text + ",");
                 this.Hide();
                 var MainGame = new MainGame();
                 MainGame.Closed += (s, args) => this.Close();
@@ -61,6 +63,7 @@ namespace OOP_LAB1
 
         private void LogInButton_KeyDown(object sender, KeyEventArgs e)
         {
+                Console.WriteLine(e.ToString());
                 if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
                 (UsernameField.Text == "admin" && PasswordField.Text == "admin")
                 )

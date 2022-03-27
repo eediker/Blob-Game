@@ -70,7 +70,7 @@ namespace OOP_LAB1
     public class Output
     {
         private string filename;
-        public Output(string filename = "NewFile")
+        public Output(string filename = "UserSettings")
         {
             this.filename = filename;
         }
@@ -79,6 +79,12 @@ namespace OOP_LAB1
         {
             get { return filename;}
             set { filename = value; }
+        }
+
+        public void GiveOutput(string line)
+        {
+            string path = @"..\..\"+filename+".txt";
+            File.AppendAllText(path, line);
         }
     }
 
