@@ -82,9 +82,6 @@ namespace OOP_LAB1
             output.GiveOutput(line);
             MessageBox.Show("Your settings saved to file");
             this.Hide();
-            var MainGame = new MainGame();
-            MainGame.Closed += (s, args) => this.Close();
-            MainGame.Show();
         }
 
         private void ReturnToLastForm_Click(object sender, EventArgs e)
