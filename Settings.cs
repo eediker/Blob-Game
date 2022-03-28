@@ -58,8 +58,9 @@ namespace OOP_LAB1
                     return;
                 }
 
+                line += "Custom(";
                 line += Width.Text;
-                line += "," + Height.Text;
+                line += "," + Height.Text + ")";
             }
 
             if (Square.Checked)
@@ -69,18 +70,26 @@ namespace OOP_LAB1
             if (Round.Checked)
                 line += "," + "Round";
 
+            if (Red.Checked)
+                line += "," + "Red";
+            if (Blue.Checked)
+                line += "," + "Blue";
+            if (Yellow.Checked)
+                line += "," + "Yellow";
+
             line += "\n";
 
             output.GiveOutput(line);
             MessageBox.Show("Your settings saved to file");
-        }
-
-        private void ReturnToLastForm_Click(object sender, EventArgs e)
-        {
             this.Hide();
             var MainGame = new MainGame();
             MainGame.Closed += (s, args) => this.Close();
             MainGame.Show();
+        }
+
+        private void ReturnToLastForm_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void Easy_CheckedChanged(object sender, EventArgs e)
@@ -105,6 +114,11 @@ namespace OOP_LAB1
              Height.Visible = false;
              label3.Visible = false;
              label4.Visible = false;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
