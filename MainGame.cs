@@ -21,7 +21,6 @@ namespace OOP_LAB1
         {
             this.Hide();
             var Settings = new Settings();
-            Settings.Closed += (s, args) => this.Close();
             Settings.Show();
         }
     }
