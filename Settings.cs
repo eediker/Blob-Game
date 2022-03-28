@@ -58,8 +58,9 @@ namespace OOP_LAB1
                     return;
                 }
 
+                line += "Custom(";
                 line += Width.Text;
-                line += "," + Height.Text;
+                line += "," + Height.Text + ")";
             }
 
             if (Square.Checked)
