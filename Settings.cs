@@ -69,6 +69,13 @@ namespace OOP_LAB1
             if (Round.Checked)
                 line += "," + "Round";
 
+            if (Red.Checked)
+                line += "," + "Red";
+            if (Blue.Checked)
+                line += "," + "Blue";
+            if (Yellow.Checked)
+                line += "," + "Yellow";
+
             line += "\n";
 
             output.GiveOutput(line);
@@ -105,6 +112,11 @@ namespace OOP_LAB1
              Height.Visible = false;
              label3.Visible = false;
              label4.Visible = false;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
