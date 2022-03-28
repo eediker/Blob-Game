@@ -44,7 +44,6 @@
             this.Square = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
-            this.ReturnToLastForm = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Blue = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -221,23 +220,13 @@
             // Save
             // 
             this.Save.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Save.Location = new System.Drawing.Point(324, 344);
+            this.Save.Location = new System.Drawing.Point(378, 343);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 2;
             this.Save.Text = "Save";
             this.Save.UseVisualStyleBackColor = false;
             this.Save.Click += new System.EventHandler(this.Save_Click);
-            // 
-            // ReturnToLastForm
-            // 
-            this.ReturnToLastForm.Location = new System.Drawing.Point(21, 27);
-            this.ReturnToLastForm.Name = "ReturnToLastForm";
-            this.ReturnToLastForm.Size = new System.Drawing.Size(75, 23);
-            this.ReturnToLastForm.TabIndex = 3;
-            this.ReturnToLastForm.Text = "<---";
-            this.ReturnToLastForm.UseVisualStyleBackColor = true;
-            this.ReturnToLastForm.Click += new System.EventHandler(this.ReturnToLastForm_Click);
             // 
             // panel1
             // 
@@ -297,12 +286,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ReturnToLastForm);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Shapes);
             this.Controls.Add(this.DifficultyLevel);
             this.Name = "Settings";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.DifficultyLevel.ResumeLayout(false);
             this.DifficultyLevel.PerformLayout();
@@ -332,7 +319,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Height;
         private System.Windows.Forms.TextBox Width;
-        private System.Windows.Forms.Button ReturnToLastForm;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox Blue;

@@ -19,7 +19,6 @@ namespace OOP_LAB1
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             var Settings = new Settings();
             Settings.Show();
         }
