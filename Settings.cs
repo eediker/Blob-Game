@@ -84,13 +84,6 @@ namespace OOP_LAB1
             MessageBox.Show("Your settings saved to file");
             
             this.Hide();
-<<<<<<< Updated upstream
-            var MainGame = new MainGame();
-            MainGame.Closed += (s, args) => this.Close();
-            MainGame.Show();
-=======
-           
->>>>>>> Stashed changes
         }
 
         private void ReturnToLastForm_Click(object sender, EventArgs e)
