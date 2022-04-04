@@ -29,7 +29,11 @@ namespace OOP_LAB1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            if (!System.Text.RegularExpressions.Regex.IsMatch(UsernameField.Text, "^[a-zA-Z ]"))
+            {
+                MessageBox.Show("This textbox accepts only alphabetical characters");
+                UsernameField.Text.Remove(UsernameField.Text.Length - 1);
+            }
         }
 
         private void LogInButton_Click(object sender, EventArgs e)
@@ -77,6 +81,27 @@ namespace OOP_LAB1
                 {
                     MessageBox.Show("There is no user found with this informations");
                 }
+        }
+
+        //private void clear_Click(object sender, EventArgs e)
+        //{
+        //    PasswordField.PasswordChar = default;
+
+
+
+        //}
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                PasswordField.PasswordChar = '\0';
+            }
+            else
+            {
+                PasswordField.PasswordChar = '*';
+            }
+            
         }
     }
 }
