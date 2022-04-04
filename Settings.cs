@@ -79,8 +79,10 @@ namespace OOP_LAB1
 
             line += "\n";
 
+            
             output.GiveOutput(line);
             MessageBox.Show("Your settings saved to file");
+            
             this.Hide();
         }
 

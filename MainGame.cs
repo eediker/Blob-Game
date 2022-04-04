@@ -20,7 +20,7 @@ namespace OOP_LAB1
         private void SettingsButton_Click(object sender, EventArgs e)
         {
             var Settings = new Settings();
-            Settings.Show();
+            Settings.ShowDialog();
         }
     }
 }
