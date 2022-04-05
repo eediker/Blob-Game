@@ -48,7 +48,7 @@ namespace OOP_LAB1
                 this.Hide();
                 var MainGame = new MainGame();
                 MainGame.Closed += (s, args) => this.Close();
-                MainGame.Show();
+                MainGame.ShowDialog();
             }
             else
             {
@@ -61,22 +61,23 @@ namespace OOP_LAB1
 
         }
 
-        private void LogInButton_KeyDown(object sender, KeyEventArgs e)
-        {
-                Console.WriteLine(e.ToString());
-                if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
-                (UsernameField.Text == "admin" && PasswordField.Text == "admin")
-                )
-                {
-                    this.Hide();
-                    var MainGame = new MainGame();
-                    MainGame.Closed += (s, args) => this.Close();
-                    MainGame.Show();
-                }
-                else
-                {
-                    MessageBox.Show("There is no user found with this informations");
-                }
-        }
+        //private void LogInButton_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //        Console.WriteLine(e.ToString());
+        //        if ((UsernameField.Text == "user" && PasswordField.Text == "user") ||
+        //        (UsernameField.Text == "admin" && PasswordField.Text == "admin")
+        //        )
+        //        {
+        //            this.Hide();
+        //            var MainGame = new MainGame();
+        //            MainGame.Closed += (s, args) => this.Close();
+        //            MainGame.Show();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("There is no user found with this informations");
+        //        }
+        //}
+
     }
 }

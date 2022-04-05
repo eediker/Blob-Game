@@ -45,10 +45,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Blue = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.Red = new System.Windows.Forms.CheckBox();
             this.Yellow = new System.Windows.Forms.CheckBox();
+            this.Red = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Blue = new System.Windows.Forms.CheckBox();
             this.DifficultyLevel.SuspendLayout();
             this.Shapes.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -151,7 +151,6 @@
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Difficulty Level";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Easy
             // 
@@ -240,25 +239,15 @@
             this.panel1.Size = new System.Drawing.Size(200, 186);
             this.panel1.TabIndex = 4;
             // 
-            // Blue
+            // Yellow
             // 
-            this.Blue.AutoSize = true;
-            this.Blue.Location = new System.Drawing.Point(27, 39);
-            this.Blue.Name = "Blue";
-            this.Blue.Size = new System.Drawing.Size(47, 17);
-            this.Blue.TabIndex = 0;
-            this.Blue.Text = "Blue";
-            this.Blue.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(81, 13);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Colors";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.Yellow.AutoSize = true;
+            this.Yellow.Location = new System.Drawing.Point(27, 111);
+            this.Yellow.Name = "Yellow";
+            this.Yellow.Size = new System.Drawing.Size(57, 17);
+            this.Yellow.TabIndex = 3;
+            this.Yellow.Text = "Yellow";
+            this.Yellow.UseVisualStyleBackColor = true;
             // 
             // Red
             // 
@@ -270,15 +259,25 @@
             this.Red.Text = "Red";
             this.Red.UseVisualStyleBackColor = true;
             // 
-            // Yellow
+            // label5
             // 
-            this.Yellow.AutoSize = true;
-            this.Yellow.Location = new System.Drawing.Point(27, 111);
-            this.Yellow.Name = "Yellow";
-            this.Yellow.Size = new System.Drawing.Size(57, 17);
-            this.Yellow.TabIndex = 3;
-            this.Yellow.Text = "Yellow";
-            this.Yellow.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(81, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Colors";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // Blue
+            // 
+            this.Blue.AutoSize = true;
+            this.Blue.Location = new System.Drawing.Point(27, 39);
+            this.Blue.Name = "Blue";
+            this.Blue.Size = new System.Drawing.Size(47, 17);
+            this.Blue.TabIndex = 0;
+            this.Blue.Text = "Blue";
+            this.Blue.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 

@@ -91,10 +91,11 @@
             this.LogInButton.Text = "LOG-IN";
             this.LogInButton.UseVisualStyleBackColor = true;
             this.LogInButton.Click += new System.EventHandler(this.LogInButton_Click);
-            this.LogInButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogInButton_KeyDown);
+            this.LogInButton.Enter += new System.EventHandler(this.LogInButton_Click);
             // 
             // LogIn
             // 
+            this.AcceptButton = this.LogInButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
