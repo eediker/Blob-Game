@@ -15,6 +15,8 @@ namespace OOP_LAB1
         public Settings()
         {
             InitializeComponent();
+            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -37,51 +39,7 @@ namespace OOP_LAB1
 
         private void Save_Click(object sender, EventArgs e)
         {
-            Output output = new Output("UserSettings");
-            string line = "";            
-            if (Easy.Checked)
-                line += "Easy";
-            else if (Normal.Checked)
-                line += "Normal";
-            else if (Hard.Checked)
-                line += "Hard";
-            else if (Custom.Checked)
-            {
-                try
-                {
-                    int.Parse(Width.Text);
-                    int.Parse(Height.Text);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-
-                line += "Custom(";
-                line += Width.Text;
-                line += "," + Height.Text + ")";
-            }
-
-            if (Square.Checked)
-                line += "," + "Square";
-            if (Triangle.Checked)
-                line += "," + "Triangle";
-            if (Round.Checked)
-                line += "," + "Round";
-
-            if (Red.Checked)
-                line += "," + "Red";
-            if (Blue.Checked)
-                line += "," + "Blue";
-            if (Yellow.Checked)
-                line += "," + "Yellow";
-
-            line += "\n";
-
-            
-            output.GiveOutput(line);
-            MessageBox.Show("Your settings saved to file");
+           
             
             this.Hide();
             
