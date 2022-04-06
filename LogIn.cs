@@ -15,6 +15,7 @@ namespace OOP_LAB1
         public LogIn()
         {
             InitializeComponent();
+            UsernameField.Text = SettingsSave.Default.Username;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -38,9 +39,10 @@ namespace OOP_LAB1
             bool Flag =
                 (UsernameField.Text == user.Username && PasswordField.Text == user.Password);
                 
-
+           
             if (Flag)
             {
+                SettingsSave.Default.Username = UsernameField.Text;
                 this.Hide();
                 var MainGame = new MainGame();
                 MainGame.Closed += (s, args) => this.Close();
@@ -50,6 +52,7 @@ namespace OOP_LAB1
             {
                 MessageBox.Show("There is no user found with this informations");
             }
+            
         }
 
         private void PasswordField_TextChanged(object sender, EventArgs e)
