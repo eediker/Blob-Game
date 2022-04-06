@@ -1,20 +1,17 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OOP_LAB1" GeneratedClassName="SettingsSaved">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OOP_LAB1" GeneratedClassName="SettingsSave">
   <Profiles />
   <Settings>
-    <Setting Name="Username" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Diffuculty" Type="System.String" Scope="User">
       <Value Profile="(Default)">Easy</Value>
     </Setting>
     <Setting Name="Square" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Round" Type="System.Boolean" Scope="User">
+    <Setting Name="Triangle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Triangle" Type="System.Boolean" Scope="User">
+    <Setting Name="Round" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Red" Type="System.Boolean" Scope="User">
