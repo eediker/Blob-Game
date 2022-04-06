@@ -33,6 +33,7 @@
             this.UsernameField = new System.Windows.Forms.TextBox();
             this.PasswordField = new System.Windows.Forms.TextBox();
             this.LogInButton = new System.Windows.Forms.Button();
+            this.SignUpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -93,12 +94,23 @@
             this.LogInButton.Click += new System.EventHandler(this.LogInButton_Click);
             this.LogInButton.Enter += new System.EventHandler(this.LogInButton_Click);
             // 
+            // SignUpButton
+            // 
+            this.SignUpButton.Location = new System.Drawing.Point(327, 316);
+            this.SignUpButton.Name = "SignUpButton";
+            this.SignUpButton.Size = new System.Drawing.Size(144, 23);
+            this.SignUpButton.TabIndex = 5;
+            this.SignUpButton.Text = "SIGN-UP";
+            this.SignUpButton.UseVisualStyleBackColor = true;
+            this.SignUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
+            // 
             // LogIn
             // 
             this.AcceptButton = this.LogInButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SignUpButton);
             this.Controls.Add(this.LogInButton);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.UsernameField);
@@ -120,6 +132,7 @@
         private System.Windows.Forms.TextBox UsernameField;
         private System.Windows.Forms.TextBox PasswordField;
         private System.Windows.Forms.Button LogInButton;
+        private System.Windows.Forms.Button SignUpButton;
     }
 }
 

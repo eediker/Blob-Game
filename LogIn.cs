@@ -60,5 +60,10 @@ namespace OOP_LAB1
 
         }
 
+        private void SignUpButton_Click(object sender, EventArgs e)
+        {
+            var SignUp = new SignUp();
+            SignUp.ShowDialog();
+        }
     }
 }
