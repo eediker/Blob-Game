@@ -57,7 +57,7 @@ namespace OOP_LAB1
 
         private void PasswordField_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)

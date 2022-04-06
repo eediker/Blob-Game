@@ -183,6 +183,7 @@
             this.SaveTheUser.TabIndex = 16;
             this.SaveTheUser.Text = "SIGN-UP";
             this.SaveTheUser.UseVisualStyleBackColor = true;
+            this.SaveTheUser.Click += new System.EventHandler(this.SaveTheUser_Click);
             // 
             // SignUp
             // 
