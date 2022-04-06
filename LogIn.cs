@@ -35,16 +35,12 @@ namespace OOP_LAB1
         private void LogInButton_Click(object sender, EventArgs e)
         {
             User user = new User();
-            Admin admin = new Admin();
-            bool Flag = 
-                (UsernameField.Text == user.Username && PasswordField.Text == user.Password)
-                ||
-                (UsernameField.Text == admin.Password && PasswordField.Text == admin.Password);
+            bool Flag =
+                (UsernameField.Text == user.Username && PasswordField.Text == user.Password);
+                
 
             if (Flag)
             {
-                Output output = new Output("UserSettings");
-                output.GiveOutput(UsernameField.Text + "," + PasswordField.Text + ",");
                 this.Hide();
                 var MainGame = new MainGame();
                 MainGame.Closed += (s, args) => this.Close();
