@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace OOP_LAB1
 {
@@ -36,10 +37,16 @@ namespace OOP_LAB1
         private void LogInButton_Click(object sender, EventArgs e)
         {
             User user = new User();
+            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
+
+            XElement[] arrayOfUsers = xmlDoc.Descendants("users").ToArray();
+
             bool Flag =
-                (UsernameField.Text == user.Username && PasswordField.Text == user.Password);
-                
-           
+                (UsernameField.Text == user.Username && PasswordField.Text == user.Password
+                &&
+                UsernameField.Text == "admin" && PasswordField.Text == "admin"
+                );
+
             if (Flag)
             {
                 SettingsSave.Default.Username = UsernameField.Text;
