@@ -35,6 +35,21 @@ namespace OOP_LAB1
 
         }
 
+        static string Sha256Hash(string Data)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(Data));
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
         private void LogInButton_Click(object sender, EventArgs e)
         {
             XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
@@ -42,9 +57,10 @@ namespace OOP_LAB1
             var Users = xmlDoc.Descendants("user");
             foreach (var xUser in Users)
             {
+                
                 if (xUser.Element("username").Value == UsernameField.Text
                     &&
-                    xUser.Element("password").Value == PasswordField.Text)
+                    xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
                 {
                     SettingsSave.Default.Username = UsernameField.Text;
                     this.Hide();
