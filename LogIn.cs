@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Security.Cryptography;
 
 namespace OOP_LAB1
 {
@@ -36,29 +37,24 @@ namespace OOP_LAB1
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            User user = new User();
             XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
 
-            XElement[] arrayOfUsers = xmlDoc.Descendants("users").ToArray();
-
-            bool Flag =
-                (UsernameField.Text == user.Username && PasswordField.Text == user.Password
-                &&
-                UsernameField.Text == "admin" && PasswordField.Text == "admin"
-                );
-
-            if (Flag)
+            var Users = xmlDoc.Descendants("user");
+            foreach (var xUser in Users)
             {
-                SettingsSave.Default.Username = UsernameField.Text;
-                this.Hide();
-                var MainGame = new MainGame();
-                MainGame.Closed += (s, args) => this.Close();
-                MainGame.ShowDialog();
+                if (xUser.Element("username").Value == UsernameField.Text
+                    &&
+                    xUser.Element("password").Value == PasswordField.Text)
+                {
+                    SettingsSave.Default.Username = UsernameField.Text;
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
             }
-            else
-            {
-                MessageBox.Show("There is no user found with this informations");
-            }
+            MessageBox.Show("There is no user found with this informations");
             
         }
 
