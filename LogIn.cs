@@ -58,6 +58,7 @@ namespace OOP_LAB1
             foreach (var xUser in Users)
             {
                 
+                
                 if (xUser.Element("username").Value == UsernameField.Text
                     &&
                     xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
@@ -83,6 +84,14 @@ namespace OOP_LAB1
         {
             var SignUp = new SignUp();
             SignUp.ShowDialog();
+        }
+
+        private void UsernameField_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -70,6 +70,7 @@
             this.UsernameField.Size = new System.Drawing.Size(147, 20);
             this.UsernameField.TabIndex = 2;
             this.UsernameField.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.UsernameField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsernameField_KeyPress);
             // 
             // PasswordField
             // 
