@@ -15,6 +15,15 @@ namespace OOP_LAB1
         public MainGame()
         {
             InitializeComponent();
+
+            if(SettingsSave.Default.Username != "admin")
+            {
+                AdminPanelButton.Visible = false;
+            }
+            else
+            {
+                ShowUserProfile.Visible = false;
+            }
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)

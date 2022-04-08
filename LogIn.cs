@@ -64,6 +64,7 @@ namespace OOP_LAB1
                     xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
                 {
                     SettingsSave.Default.Username = UsernameField.Text;
+                    SettingsSave.Default.Save();
                     this.Hide();
                     var MainGame = new MainGame();
                     MainGame.Closed += (s, args) => this.Close();
