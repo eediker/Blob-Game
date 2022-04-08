@@ -93,5 +93,10 @@ namespace OOP_LAB1
                 e.Handled = true;
             }
         }
+
+        private void ShowPassword_Click(object sender, EventArgs e)
+        {
+            PasswordField.PasswordChar = default;
+        }
     }
 }
