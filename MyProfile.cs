@@ -44,9 +44,7 @@ namespace OOP_LAB1
             var Users = xmlDoc.Descendants("user");
             foreach (var xUser in Users)
             {
-                if (xUser.Element("username").Value == UsernameField.Text
-                    &&
-                    xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
+                if (xUser.Element("username").Value == UsernameField.Text)
                 {
                     xUser.Element("password").Value = PasswordField.Text;
                     xUser.Element("name-surname").Value = NameSurnameField.Text;
@@ -58,13 +56,9 @@ namespace OOP_LAB1
                     xUser.Save("../../RegisteredUsers.xml");
 
                     this.Hide();
-                    var MainGame = new MainGame();
-                    MainGame.Closed += (s, args) => this.Close();
-                    MainGame.ShowDialog();
                     return;
                 }
-            }
-            MessageBox.Show("There is no user found with this informations");
+            }         
         }
 
         static string Sha256Hash(string Data)
