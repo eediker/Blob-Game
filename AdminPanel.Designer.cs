@@ -30,13 +30,14 @@
         {
             this.ListUsers = new System.Windows.Forms.Button();
             this.AddNewUser = new System.Windows.Forms.Button();
-            this.UpdateUserInfo = new System.Windows.Forms.Button();
             this.DeleteAnUser = new System.Windows.Forms.Button();
+            this.UsernameField = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ListUsers
             // 
-            this.ListUsers.Location = new System.Drawing.Point(249, 104);
+            this.ListUsers.Location = new System.Drawing.Point(56, 36);
             this.ListUsers.Name = "ListUsers";
             this.ListUsers.Size = new System.Drawing.Size(140, 30);
             this.ListUsers.TabIndex = 35;
@@ -46,7 +47,7 @@
             // 
             // AddNewUser
             // 
-            this.AddNewUser.Location = new System.Drawing.Point(249, 241);
+            this.AddNewUser.Location = new System.Drawing.Point(293, 36);
             this.AddNewUser.Name = "AddNewUser";
             this.AddNewUser.Size = new System.Drawing.Size(140, 30);
             this.AddNewUser.TabIndex = 36;
@@ -54,36 +55,46 @@
             this.AddNewUser.UseVisualStyleBackColor = true;
             this.AddNewUser.Click += new System.EventHandler(this.AddNewUser_Click);
             // 
-            // UpdateUserInfo
-            // 
-            this.UpdateUserInfo.Location = new System.Drawing.Point(249, 174);
-            this.UpdateUserInfo.Name = "UpdateUserInfo";
-            this.UpdateUserInfo.Size = new System.Drawing.Size(140, 30);
-            this.UpdateUserInfo.TabIndex = 37;
-            this.UpdateUserInfo.Text = "Update User Info";
-            this.UpdateUserInfo.UseVisualStyleBackColor = true;
-            // 
             // DeleteAnUser
             // 
-            this.DeleteAnUser.Location = new System.Drawing.Point(249, 318);
+            this.DeleteAnUser.Location = new System.Drawing.Point(293, 311);
             this.DeleteAnUser.Name = "DeleteAnUser";
             this.DeleteAnUser.Size = new System.Drawing.Size(140, 30);
             this.DeleteAnUser.TabIndex = 38;
             this.DeleteAnUser.Text = "Delete A User";
             this.DeleteAnUser.UseVisualStyleBackColor = true;
+            this.DeleteAnUser.Click += new System.EventHandler(this.DeleteAnUser_Click);
+            // 
+            // UsernameField
+            // 
+            this.UsernameField.Location = new System.Drawing.Point(293, 263);
+            this.UsernameField.Name = "UsernameField";
+            this.UsernameField.Size = new System.Drawing.Size(140, 20);
+            this.UsernameField.TabIndex = 39;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(260, 225);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(220, 13);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Enter the username which you want to delete";
             // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.UsernameField);
             this.Controls.Add(this.DeleteAnUser);
-            this.Controls.Add(this.UpdateUserInfo);
             this.Controls.Add(this.AddNewUser);
             this.Controls.Add(this.ListUsers);
             this.Name = "AdminPanel";
             this.Text = "AdminPanel";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,7 +102,8 @@
 
         private System.Windows.Forms.Button ListUsers;
         private System.Windows.Forms.Button AddNewUser;
-        private System.Windows.Forms.Button UpdateUserInfo;
         private System.Windows.Forms.Button DeleteAnUser;
+        private System.Windows.Forms.TextBox UsernameField;
+        private System.Windows.Forms.Label label1;
     }
 }
