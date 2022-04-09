@@ -114,7 +114,7 @@ namespace OOP_LAB1
         {
             if (UsernameField.Text == "user" || UsernameField.Text == "admin")
             {
-                MessageBox.Show("You cant delete these preregistered users!");
+                MessageBox.Show("You cant update these preregistered users!");
                 return;
             }
 
