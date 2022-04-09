@@ -12,3 +12,5 @@ C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.LogIn.resources
 C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.MainGame.resources
 C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.Settings.resources
 C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.SignUp.resources
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.AdminPanel.resources
+C:\Users\Lenovo\Desktop\enes\OOP-LAB\obj\Debug\OOP_LAB1.ListUsers.resources
