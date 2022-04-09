@@ -38,6 +38,17 @@ namespace OOP_LAB1
         {
 
             XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
+
+            var Users = xmlDoc.Descendants("user");
+            foreach (var xUser in Users)
+            {
+                if (xUser.Element("username").Value == UsernameField.Text)
+                {
+                    MessageBox.Show("There is an user with this username!");
+                    return;
+                }
+                    
+            }
             XElement root = xmlDoc.Descendants("users").First();
             XElement element = new XElement("user");
             XElement UserName = new XElement("username", UsernameField.Text);
@@ -49,12 +60,12 @@ namespace OOP_LAB1
             XElement Country = new XElement("country", CountryField.Text);
             XElement Email = new XElement("email", EmailField.Text);
             element.Add(UserName, Password, NameSurname,
-                PhoneNumber, Address, City, Country,Email);
+                PhoneNumber, Address, City, Country, Email);
             root.Add(element);
             xmlDoc.Save("../../RegisteredUsers.xml");
-
             MessageBox.Show("Succesfully registered");
             this.Hide();
+
         }
     }
 }
