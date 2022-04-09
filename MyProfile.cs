@@ -30,6 +30,13 @@ namespace OOP_LAB1
 
         private void Save_Click(object sender, EventArgs e)
         {
+            if(Sha256Hash(SettingsSave.Default.Password) != PasswordCheck.Text)
+            {
+                MessageBox.Show("Hatalı Parola!");
+                return;
+            }
+
+
             SettingsSave.Default.Password = Sha256Hash(PasswordField.Text);
             SettingsSave.Default.NameSurname = NameSurnameField.Text;
             SettingsSave.Default.PhoneNumber = PhoneNumberField.Text;

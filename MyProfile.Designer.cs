@@ -45,11 +45,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.UsernameField = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.PasswordCheck = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(335, 305);
+            this.Save.Location = new System.Drawing.Point(335, 364);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(142, 23);
             this.Save.TabIndex = 33;
@@ -186,11 +188,29 @@
             this.UsernameField.Size = new System.Drawing.Size(0, 13);
             this.UsernameField.TabIndex = 34;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(343, 295);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(134, 13);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Enter the current password";
+            // 
+            // PasswordCheck
+            // 
+            this.PasswordCheck.Location = new System.Drawing.Point(335, 328);
+            this.PasswordCheck.Name = "PasswordCheck";
+            this.PasswordCheck.Size = new System.Drawing.Size(142, 20);
+            this.PasswordCheck.TabIndex = 36;
+            // 
             // MyProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PasswordCheck);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.UsernameField);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.EmailField);
@@ -234,5 +254,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label UsernameField;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox PasswordCheck;
     }
 }
