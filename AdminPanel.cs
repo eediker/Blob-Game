@@ -112,6 +112,12 @@ namespace OOP_LAB1
 
         private void UpdateUserInfo_Click(object sender, EventArgs e)
         {
+            if (UsernameField.Text == "user" || UsernameField.Text == "admin")
+            {
+                MessageBox.Show("You cant delete these preregistered users!");
+                return;
+            }
+
             XDocument x = XDocument.Load("../../RegisteredUsers.xml");
 
             XElement node = x.Element("users").Elements("user").FirstOrDefault(a => a.Element("username").Value == UsernameField.Text);
