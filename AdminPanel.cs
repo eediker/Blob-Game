@@ -20,7 +20,8 @@ namespace OOP_LAB1
 
         private void ListUsers_Click(object sender, EventArgs e)
         {
-
+            var ListUsers = new ListUsers();
+            ListUsers.ShowDialog();
         }
 
         private void AddNewUser_Click(object sender, EventArgs e)

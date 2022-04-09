@@ -37,7 +37,7 @@
             // 
             // ListUsers
             // 
-            this.ListUsers.Location = new System.Drawing.Point(56, 36);
+            this.ListUsers.Location = new System.Drawing.Point(293, 118);
             this.ListUsers.Name = "ListUsers";
             this.ListUsers.Size = new System.Drawing.Size(140, 30);
             this.ListUsers.TabIndex = 35;
