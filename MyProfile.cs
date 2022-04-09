@@ -30,7 +30,7 @@ namespace OOP_LAB1
 
         private void Save_Click(object sender, EventArgs e)
         {
-            SettingsSave.Default.Password = PasswordField.Text;
+            SettingsSave.Default.Password = Sha256Hash(PasswordField.Text);
             SettingsSave.Default.NameSurname = NameSurnameField.Text;
             SettingsSave.Default.PhoneNumber = PhoneNumberField.Text;
             SettingsSave.Default.Address = AddressField.Text;
@@ -46,7 +46,7 @@ namespace OOP_LAB1
             {
                 if (xUser.Element("username").Value == UsernameField.Text)
                 {
-                    xUser.Element("password").Value = PasswordField.Text;
+                    xUser.Element("password").Value = Sha256Hash(PasswordField.Text);
                     xUser.Element("name-surname").Value = NameSurnameField.Text;
                     xUser.Element("phone-number").Value = PhoneNumberField.Text;
                     xUser.Element("address").Value = AddressField.Text;
