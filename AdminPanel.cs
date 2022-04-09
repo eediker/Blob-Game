@@ -112,16 +112,6 @@ namespace OOP_LAB1
         private void UpdateUserInfo_Click(object sender, EventArgs e)
         {
             XDocument x = XDocument.Load("../../RegisteredUsers.xml");
-            var Users = x.Descendants("user");
-            foreach (var xUser in Users)
-            {
-                if (xUser.Element("username").Value == UsernameField.Text)
-                {
-                    MessageBox.Show("There is an user with this username!");
-                    return;
-                }
-
-            }
 
             XElement node = x.Element("users").Elements("user").FirstOrDefault(a => a.Element("username").Value == UsernameField.Text);
             if (node != null)
@@ -135,6 +125,10 @@ namespace OOP_LAB1
                 node.SetElementValue("email", EmailField.Text);
                 x.Save("../../RegisteredUsers.xml");
                 LoadTheData();
+            }
+            else
+            {
+                MessageBox.Show("There is no user with this username");
             }
         }
     }
