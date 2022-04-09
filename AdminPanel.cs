@@ -94,6 +94,7 @@ namespace OOP_LAB1
                 if (xUser.Element("username").Value == UsernameField.Text)
                 {
                     xUser.Remove();
+                    xmlDoc.Save("../../RegisteredUsers.xml");
                     MessageBox.Show("User deleted...");
                     LoadTheData();
                     return;
