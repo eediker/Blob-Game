@@ -37,7 +37,7 @@
             // 
             // ListUsers
             // 
-            this.ListUsers.Location = new System.Drawing.Point(293, 118);
+            this.ListUsers.Location = new System.Drawing.Point(164, 46);
             this.ListUsers.Name = "ListUsers";
             this.ListUsers.Size = new System.Drawing.Size(140, 30);
             this.ListUsers.TabIndex = 35;
@@ -47,7 +47,7 @@
             // 
             // AddNewUser
             // 
-            this.AddNewUser.Location = new System.Drawing.Point(293, 36);
+            this.AddNewUser.Location = new System.Drawing.Point(396, 46);
             this.AddNewUser.Name = "AddNewUser";
             this.AddNewUser.Size = new System.Drawing.Size(140, 30);
             this.AddNewUser.TabIndex = 36;
@@ -57,7 +57,7 @@
             // 
             // DeleteAnUser
             // 
-            this.DeleteAnUser.Location = new System.Drawing.Point(293, 311);
+            this.DeleteAnUser.Location = new System.Drawing.Point(284, 309);
             this.DeleteAnUser.Name = "DeleteAnUser";
             this.DeleteAnUser.Size = new System.Drawing.Size(140, 30);
             this.DeleteAnUser.TabIndex = 38;
@@ -67,7 +67,7 @@
             // 
             // UsernameField
             // 
-            this.UsernameField.Location = new System.Drawing.Point(293, 263);
+            this.UsernameField.Location = new System.Drawing.Point(284, 261);
             this.UsernameField.Name = "UsernameField";
             this.UsernameField.Size = new System.Drawing.Size(140, 20);
             this.UsernameField.TabIndex = 39;
@@ -75,7 +75,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(260, 225);
+            this.label1.Location = new System.Drawing.Point(251, 223);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(220, 13);
             this.label1.TabIndex = 40;

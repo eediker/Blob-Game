@@ -31,5 +31,11 @@ namespace OOP_LAB1
             var Settings = new Settings();
             Settings.ShowDialog();
         }
+
+        private void AdminPanelButton_Click(object sender, EventArgs e)
+        {
+            var AdminPanel = new AdminPanel();
+            AdminPanel.ShowDialog();
+        }
     }
 }

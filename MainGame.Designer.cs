@@ -60,6 +60,7 @@
             this.AdminPanelButton.TabIndex = 2;
             this.AdminPanelButton.Text = "Admin Panel";
             this.AdminPanelButton.UseVisualStyleBackColor = true;
+            this.AdminPanelButton.Click += new System.EventHandler(this.AdminPanelButton_Click);
             // 
             // MainGame
             // 
