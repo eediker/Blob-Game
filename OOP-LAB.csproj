@@ -52,12 +52,6 @@
     <Compile Include="AdminPanel.Designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListUsers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListUsers.Designer.cs">
-      <DependentUpon>ListUsers.cs</DependentUpon>
-    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +85,6 @@
     </Compile>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListUsers.resx">
-      <DependentUpon>ListUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
