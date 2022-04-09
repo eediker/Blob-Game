@@ -51,6 +51,7 @@
             this.ShowUserProfile.TabIndex = 1;
             this.ShowUserProfile.Text = "Profile";
             this.ShowUserProfile.UseVisualStyleBackColor = true;
+            this.ShowUserProfile.Click += new System.EventHandler(this.ShowUserProfile_Click);
             // 
             // AdminPanelButton
             // 

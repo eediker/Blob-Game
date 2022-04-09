@@ -50,7 +50,7 @@ namespace OOP_LAB1
             }
         }
 
-        private void LogInButton_Click(object sender, EventArgs e)
+    private void LogInButton_Click(object sender, EventArgs e)
         {
             XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
 
@@ -63,7 +63,15 @@ namespace OOP_LAB1
                     &&
                     xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
                 {
-                    SettingsSave.Default.Username = UsernameField.Text;
+                    SettingsSave.Default.Username = xUser.Element("username").Value;
+                    SettingsSave.Default.Password = xUser.Element("password").Value;
+                    SettingsSave.Default.NameSurname = xUser.Element("name-surname").Value;
+                    SettingsSave.Default.PhoneNumber = xUser.Element("phone-number").Value;
+                    SettingsSave.Default.Address = xUser.Element("address").Value;
+                    SettingsSave.Default.City = xUser.Element("city").Value;
+                    SettingsSave.Default.Country = xUser.Element("country").Value;
+                    SettingsSave.Default.Email = xUser.Element("email").Value;
+
                     SettingsSave.Default.Save();
                     this.Hide();
                     var MainGame = new MainGame();

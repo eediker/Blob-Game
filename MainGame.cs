@@ -37,5 +37,11 @@ namespace OOP_LAB1
             var AdminPanel = new AdminPanel();
             AdminPanel.ShowDialog();
         }
+
+        private void ShowUserProfile_Click(object sender, EventArgs e)
+        {
+            var MyProfile = new MyProfile();
+            MyProfile.ShowDialog();
+        }
     }
 }
