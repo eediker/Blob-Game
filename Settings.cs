@@ -17,7 +17,7 @@ namespace OOP_LAB1
         {
             InitializeComponent();
 
-            switch (SettingsSaved.Default.Diffuculty)
+            switch (SettingsSave.Default.Diffuculty)
             {
                 case "Easy":
                     Easy.Checked = true;
@@ -33,16 +33,16 @@ namespace OOP_LAB1
                     break;
             }
 
-            Square.Checked = SettingsSaved.Default.Square;
-            Round.Checked = SettingsSaved.Default.Round;
-            Triangle.Checked = SettingsSaved.Default.Triangle;
+            Square.Checked = SettingsSave.Default.Square;
+            Round.Checked = SettingsSave.Default.Round;
+            Triangle.Checked = SettingsSave.Default.Triangle;
 
-            Width.Text = SettingsSaved.Default.Width.ToString();
-            Height.Text = SettingsSaved.Default.Height.ToString();
+            Width.Text = SettingsSave.Default.Width.ToString();
+            Height.Text = SettingsSave.Default.Height.ToString();
 
-            Red.Checked = SettingsSaved.Default.Red;
-            Blue.Checked = SettingsSaved.Default.Blue;
-            Blue.Checked = SettingsSaved.Default.Blue;
+            Red.Checked = SettingsSave.Default.Red;
+            Blue.Checked = SettingsSave.Default.Blue;
+            Blue.Checked = SettingsSave.Default.Blue;
 
         }
 
@@ -68,23 +68,23 @@ namespace OOP_LAB1
         {
             if (Easy.Checked)
             {
-                SettingsSaved.Default.Diffuculty = "Easy";
+                SettingsSave.Default.Diffuculty = "Easy";
             }
             else if (Normal.Checked)
             {
-                SettingsSaved.Default.Diffuculty = "Normal";
+                SettingsSave.Default.Diffuculty = "Normal";
             }
             else if (Hard.Checked)
             {
-                SettingsSaved.Default.Diffuculty = "Hard";
+                SettingsSave.Default.Diffuculty = "Hard";
             }
             else if (Custom.Checked)
             {
-                SettingsSaved.Default.Diffuculty = "Custom";
+                SettingsSave.Default.Diffuculty = "Custom";
                 try
                 {
-                    SettingsSaved.Default.Width = int.Parse(Width.Text);
-                    SettingsSaved.Default.Height = int.Parse(Height.Text);
+                    SettingsSave.Default.Width = int.Parse(Width.Text);
+                    SettingsSave.Default.Height = int.Parse(Height.Text);
                 }
                 catch(Exception ex)
                 {
@@ -93,14 +93,14 @@ namespace OOP_LAB1
                 }
                 
             }
-            SettingsSaved.Default.Square = Square.Checked;
-            SettingsSaved.Default.Triangle = Triangle.Checked;
-            SettingsSaved.Default.Round = Round.Checked;
+            SettingsSave.Default.Square = Square.Checked;
+            SettingsSave.Default.Triangle = Triangle.Checked;
+            SettingsSave.Default.Round = Round.Checked;
 
-            SettingsSaved.Default.Red = Red.Checked;
-            SettingsSaved.Default.Blue = Blue.Checked;
-            SettingsSaved.Default.Yellow = Yellow.Checked;
-            SettingsSaved.Default.Save();
+            SettingsSave.Default.Red = Red.Checked;
+            SettingsSave.Default.Blue = Blue.Checked;
+            SettingsSave.Default.Yellow = Yellow.Checked;
+            SettingsSave.Default.Save();
 
             this.Hide();
             

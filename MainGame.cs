@@ -15,12 +15,33 @@ namespace OOP_LAB1
         public MainGame()
         {
             InitializeComponent();
+
+            if(SettingsSave.Default.Username != "admin")
+            {
+                AdminPanelButton.Visible = false;
+            }
+            else
+            {
+                ShowUserProfile.Visible = false;
+            }
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
             var Settings = new Settings();
             Settings.ShowDialog();
+        }
+
+        private void AdminPanelButton_Click(object sender, EventArgs e)
+        {
+            var AdminPanel = new AdminPanel();
+            AdminPanel.ShowDialog();
+        }
+
+        private void ShowUserProfile_Click(object sender, EventArgs e)
+        {
+            var MyProfile = new MyProfile();
+            MyProfile.ShowDialog();
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using System.Security.Cryptography;
 
 namespace OOP_LAB1
 {
@@ -15,6 +17,7 @@ namespace OOP_LAB1
         public LogIn()
         {
             InitializeComponent();
+            UsernameField.Text = SettingsSave.Default.Username;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -32,30 +35,77 @@ namespace OOP_LAB1
 
         }
 
-        private void LogInButton_Click(object sender, EventArgs e)
+        static string Sha256Hash(string Data)
         {
-            User user = new User();
-            bool Flag =
-                (UsernameField.Text == user.Username && PasswordField.Text == user.Password);
-                
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(Data));
 
-            if (Flag)
-            {
-                this.Hide();
-                var MainGame = new MainGame();
-                MainGame.Closed += (s, args) => this.Close();
-                MainGame.ShowDialog();
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
-            else
+        }
+
+    private void LogInButton_Click(object sender, EventArgs e)
+        {
+            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
+
+            var Users = xmlDoc.Descendants("user");
+            foreach (var xUser in Users)
             {
-                MessageBox.Show("There is no user found with this informations");
+                
+                
+                if (xUser.Element("username").Value == UsernameField.Text
+                    &&
+                    xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
+                {
+                    SettingsSave.Default.Username = xUser.Element("username").Value;
+                    SettingsSave.Default.Password = xUser.Element("password").Value;
+                    SettingsSave.Default.NameSurname = xUser.Element("name-surname").Value;
+                    SettingsSave.Default.PhoneNumber = xUser.Element("phone-number").Value;
+                    SettingsSave.Default.Address = xUser.Element("address").Value;
+                    SettingsSave.Default.City = xUser.Element("city").Value;
+                    SettingsSave.Default.Country = xUser.Element("country").Value;
+                    SettingsSave.Default.Email = xUser.Element("email").Value;
+
+                    SettingsSave.Default.Save();
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
             }
+            MessageBox.Show("There is no user found with this informations");
+            
         }
 
         private void PasswordField_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
+        private void SignUpButton_Click(object sender, EventArgs e)
+        {
+            var SignUp = new SignUp();
+            SignUp.ShowDialog();
+        }
+
+        private void UsernameField_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ShowPassword_Click(object sender, EventArgs e)
+        {
+            PasswordField.PasswordChar = default;
+        }
     }
 }

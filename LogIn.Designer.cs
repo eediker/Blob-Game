@@ -33,6 +33,8 @@
             this.UsernameField = new System.Windows.Forms.TextBox();
             this.PasswordField = new System.Windows.Forms.TextBox();
             this.LogInButton = new System.Windows.Forms.Button();
+            this.SignUpButton = new System.Windows.Forms.Button();
+            this.ShowPassword = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,6 +71,7 @@
             this.UsernameField.Size = new System.Drawing.Size(147, 20);
             this.UsernameField.TabIndex = 2;
             this.UsernameField.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.UsernameField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsernameField_KeyPress);
             // 
             // PasswordField
             // 
@@ -93,12 +96,34 @@
             this.LogInButton.Click += new System.EventHandler(this.LogInButton_Click);
             this.LogInButton.Enter += new System.EventHandler(this.LogInButton_Click);
             // 
+            // SignUpButton
+            // 
+            this.SignUpButton.Location = new System.Drawing.Point(327, 314);
+            this.SignUpButton.Name = "SignUpButton";
+            this.SignUpButton.Size = new System.Drawing.Size(144, 23);
+            this.SignUpButton.TabIndex = 5;
+            this.SignUpButton.Text = "SIGN-UP";
+            this.SignUpButton.UseVisualStyleBackColor = true;
+            this.SignUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
+            // 
+            // ShowPassword
+            // 
+            this.ShowPassword.Location = new System.Drawing.Point(508, 205);
+            this.ShowPassword.Name = "ShowPassword";
+            this.ShowPassword.Size = new System.Drawing.Size(100, 20);
+            this.ShowPassword.TabIndex = 6;
+            this.ShowPassword.Text = "ShowPassword";
+            this.ShowPassword.UseVisualStyleBackColor = true;
+            this.ShowPassword.Click += new System.EventHandler(this.ShowPassword_Click);
+            // 
             // LogIn
             // 
             this.AcceptButton = this.LogInButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShowPassword);
+            this.Controls.Add(this.SignUpButton);
             this.Controls.Add(this.LogInButton);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.UsernameField);
@@ -120,6 +145,8 @@
         private System.Windows.Forms.TextBox UsernameField;
         private System.Windows.Forms.TextBox PasswordField;
         private System.Windows.Forms.Button LogInButton;
+        private System.Windows.Forms.Button SignUpButton;
+        private System.Windows.Forms.Button ShowPassword;
     }
 }
 
