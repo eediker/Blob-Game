@@ -31,6 +31,7 @@
             this.SettingsButton = new System.Windows.Forms.Button();
             this.ShowUserProfile = new System.Windows.Forms.Button();
             this.AdminPanelButton = new System.Windows.Forms.Button();
+            this.AboutScreenButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SettingsButton
@@ -63,11 +64,22 @@
             this.AdminPanelButton.UseVisualStyleBackColor = true;
             this.AdminPanelButton.Click += new System.EventHandler(this.AdminPanelButton_Click);
             // 
+            // AboutScreenButton
+            // 
+            this.AboutScreenButton.Location = new System.Drawing.Point(12, 71);
+            this.AboutScreenButton.Name = "AboutScreenButton";
+            this.AboutScreenButton.Size = new System.Drawing.Size(97, 23);
+            this.AboutScreenButton.TabIndex = 3;
+            this.AboutScreenButton.Text = "About Screen";
+            this.AboutScreenButton.UseVisualStyleBackColor = true;
+            this.AboutScreenButton.Click += new System.EventHandler(this.AboutScreenButton_Click);
+            // 
             // MainGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AboutScreenButton);
             this.Controls.Add(this.AdminPanelButton);
             this.Controls.Add(this.ShowUserProfile);
             this.Controls.Add(this.SettingsButton);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.Button ShowUserProfile;
         private System.Windows.Forms.Button AdminPanelButton;
+        private System.Windows.Forms.Button AboutScreenButton;
     }
 }
