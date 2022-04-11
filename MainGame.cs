@@ -43,5 +43,11 @@ namespace OOP_LAB1
             var MyProfile = new MyProfile();
             MyProfile.ShowDialog();
         }
+
+        private void AboutScreenButton_Click(object sender, EventArgs e)
+        {
+            var AboutWindow = new AboutWindow();
+            AboutWindow.ShowDialog();
+        }
     }
 }

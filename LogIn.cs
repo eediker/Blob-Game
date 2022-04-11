@@ -50,7 +50,7 @@ namespace OOP_LAB1
             }
         }
 
-    private void LogInButton_Click(object sender, EventArgs e)
+        private void LogInButton_Click(object sender, EventArgs e)
         {
             XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
 
