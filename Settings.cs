@@ -69,14 +69,20 @@ namespace OOP_LAB1
             if (Easy.Checked)
             {
                 SettingsSave.Default.Diffuculty = "Easy";
+                SettingsSave.Default.Width = 15;
+                SettingsSave.Default.Height = 15;
             }
             else if (Normal.Checked)
             {
                 SettingsSave.Default.Diffuculty = "Normal";
+                SettingsSave.Default.Width = 9;
+                SettingsSave.Default.Height = 9;
             }
             else if (Hard.Checked)
             {
                 SettingsSave.Default.Diffuculty = "Hard";
+                SettingsSave.Default.Width = 6;
+                SettingsSave.Default.Height = 6;
             }
             else if (Custom.Checked)
             {
