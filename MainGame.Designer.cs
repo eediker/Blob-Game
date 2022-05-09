@@ -36,9 +36,9 @@
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(12, 12);
+            this.SettingsButton.Location = new System.Drawing.Point(669, 54);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(99, 23);
+            this.SettingsButton.Size = new System.Drawing.Size(119, 23);
             this.SettingsButton.TabIndex = 0;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
@@ -56,9 +56,9 @@
             // 
             // AdminPanelButton
             // 
-            this.AdminPanelButton.Location = new System.Drawing.Point(12, 42);
+            this.AdminPanelButton.Location = new System.Drawing.Point(667, 131);
             this.AdminPanelButton.Name = "AdminPanelButton";
-            this.AdminPanelButton.Size = new System.Drawing.Size(99, 23);
+            this.AdminPanelButton.Size = new System.Drawing.Size(121, 23);
             this.AdminPanelButton.TabIndex = 2;
             this.AdminPanelButton.Text = "Admin Panel";
             this.AdminPanelButton.UseVisualStyleBackColor = true;
@@ -66,9 +66,9 @@
             // 
             // AboutScreenButton
             // 
-            this.AboutScreenButton.Location = new System.Drawing.Point(12, 71);
+            this.AboutScreenButton.Location = new System.Drawing.Point(669, 92);
             this.AboutScreenButton.Name = "AboutScreenButton";
-            this.AboutScreenButton.Size = new System.Drawing.Size(97, 23);
+            this.AboutScreenButton.Size = new System.Drawing.Size(119, 23);
             this.AboutScreenButton.TabIndex = 3;
             this.AboutScreenButton.Text = "About Screen";
             this.AboutScreenButton.UseVisualStyleBackColor = true;
