@@ -87,6 +87,7 @@
             this.Height.Name = "Height";
             this.Height.Size = new System.Drawing.Size(52, 20);
             this.Height.TabIndex = 7;
+            this.Height.Text = "9";
             this.Height.Visible = false;
             // 
             // Width
@@ -95,6 +96,7 @@
             this.Width.Name = "Width";
             this.Width.Size = new System.Drawing.Size(51, 20);
             this.Width.TabIndex = 6;
+            this.Width.Text = "9";
             this.Width.Visible = false;
             // 
             // label3

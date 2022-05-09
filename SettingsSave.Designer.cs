@@ -109,7 +109,7 @@ namespace OOP_LAB1 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
         public int Width {
             get {
                 return ((int)(this["Width"]));
@@ -121,7 +121,7 @@ namespace OOP_LAB1 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
         public int Height {
             get {
                 return ((int)(this["Height"]));
