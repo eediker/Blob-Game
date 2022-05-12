@@ -130,6 +130,19 @@ namespace OOP_LAB1
 
         void MakeaMove(Button btn_now)
         {
+
+
+
+
+
+
+
+
+
+
+
+
+
             // Changing the values between previous and last clicked buttons
             btn[int.Parse(btn_now.Name)].Image = Image.FromFile("../../images/" + ButtonInfo[int.Parse(Remember)] + ".jpg");
             ButtonInfo[int.Parse(btn_now.Name)] = ButtonInfo[int.Parse(Remember)];
@@ -154,7 +167,6 @@ namespace OOP_LAB1
             {
                 for (int j = 0; j < SettingsSave.Default.Width; j++)
                 {
-
                     btn[number] = new Button();
                     btn[number].Name = number.ToString();
                     btn[number].Size = new Size(35, 35);
@@ -177,11 +189,6 @@ namespace OOP_LAB1
             {
                 for (int j = 0; j < SettingsSave.Default.Width; j++)
                 {
-                    btn[number] = new Button();
-                    btn[number].Name = number.ToString();
-                    btn[number].Size = new Size(35, 35);
-                    btn[number].Location = new Point(35 * (j + 2), 35 * (i + 2));
-                    btn[number].Click += new EventHandler(ButtonArray_click);
                     ButtonInfo[number] = 0;
                     matrix[i, j] = 0;
                     btn[number].Image = default;
