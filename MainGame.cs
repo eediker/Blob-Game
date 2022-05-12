@@ -171,9 +171,6 @@ namespace OOP_LAB1
 
         void RestartGame()
         {
-            matrix = new int[SettingsSave.Default.Height, SettingsSave.Default.Width];
-            ButtonInfo = new int[SettingsSave.Default.Width * SettingsSave.Default.Height];
-            btn = new Button[SettingsSave.Default.Width * SettingsSave.Default.Height];
             score = 0;
             int number = 0;
             for (int i = 0; i < SettingsSave.Default.Height; i++)
