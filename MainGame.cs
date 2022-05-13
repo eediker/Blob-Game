@@ -47,6 +47,7 @@ namespace OOP_LAB1
             {
 
                 MakeaMove(btn_now);
+                CheckIsScore(btn_now);
 
                 flag = false;
                 Random3Objects();
@@ -198,6 +199,14 @@ namespace OOP_LAB1
             Random3Objects();
         }
         
+        void CheckIsScore(Button btn_now)
+        {
+
+            int height = int.Parse(btn_now.Name) / SettingsSave.Default.Width;
+            int width = int.Parse(btn_now.Name) % SettingsSave.Default.Height;
+
+            
+        }
         void GiveScore()
         {
             if (SettingsSave.Default.Diffuculty == "Easy") score += 1;
