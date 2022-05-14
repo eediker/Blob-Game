@@ -153,9 +153,12 @@
     <Content Include="images\8.jpg" />
     <Content Include="images\9.jpg" />
     <Content Include="RegisteredUsers.xml" />
+    <Content Include="sounds\move.wav" />
+    <Content Include="sounds\score.wav" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

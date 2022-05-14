@@ -10,40 +10,44 @@ using System.Windows.Forms;
 
 namespace OOP_LAB1
 {
+
+
     public partial class MainGame : Form
     {
-        int[,] matrix = new int[SettingsSave.Default.Height, SettingsSave.Default.Width];
-        int[] ButtonInfo = new int[SettingsSave.Default.Width * SettingsSave.Default.Height];
-        Button[] btn = new Button[SettingsSave.Default.Width * SettingsSave.Default.Height];
+        int[,] ButtonInfo = new int[SettingsSave.Default.Width , SettingsSave.Default.Height];
+        Button[,] btn = new Button[SettingsSave.Default.Width , SettingsSave.Default.Height];
         bool flag; string Remember; int score = 0;
         public MainGame()
         {
             InitializeComponent();
 
-            if(SettingsSave.Default.Username != "admin")
+            if (SettingsSave.Default.Username != "admin")
             {
                 AdminPanelButton.Visible = false;
             }
             else
             {
                 ShowUserProfile.Visible = false;
-            }      
+            }
 
 
-            StartGame();;
-            
+            StartGame(); ;
+
         }
 
         void ButtonArray_click(object sender, EventArgs e)
         {
 
             Button btn_now = sender as Button;
-            if (ButtonInfo[int.Parse(btn_now.Name)] != 0)
+            int i = int.Parse(btn_now.Name[0].ToString());
+            int j = int.Parse(btn_now.Name[1].ToString());
+
+            if (ButtonInfo[i,j] != 0)
             {
                 flag = true;
                 Remember = btn_now.Name;
             }
-            else if (ButtonInfo[int.Parse(btn_now.Name)] == 0 && flag == true)
+            else if (ButtonInfo[i,j] == 0 && flag == true)
             {
 
                 MakeaMove(btn_now);
@@ -64,7 +68,7 @@ namespace OOP_LAB1
             var Settings = new Settings();
             string remember = SettingsSave.Default.Diffuculty;
             Settings.ShowDialog();
-            if(SettingsSave.Default.Diffuculty != remember)
+            if (SettingsSave.Default.Diffuculty != remember)
             {
                 Application.Restart();
             }
@@ -95,19 +99,30 @@ namespace OOP_LAB1
 
         void Random3Objects()
         {
+
+            int number = 0;
+            for (int i = 0; i < SettingsSave.Default.Height; i++)
+            {
+                for (int j = 0; j < SettingsSave.Default.Width; j++)
+                {
+                    if (ButtonInfo[i, j] == 0)
+                    {
+                        number++;
+                    }
+                }
+            }
+
             int x = 3;
             while (x > 0)
             {
                 Random rd = new Random();
-                int rand_num1 = rd.Next(1, 10);
-                int rand_num2 = rd.Next(0, SettingsSave.Default.Width * SettingsSave.Default.Height);
-                if (ButtonInfo[rand_num2] == 0)
+                int randShape = rd.Next(1, 10);
+                int Width = rd.Next(0, SettingsSave.Default.Width);
+                int Height = rd.Next(0, SettingsSave.Default.Height); 
+                if (ButtonInfo[Height,Width] == 0)
                 {
-                    btn[rand_num2].Image = Image.FromFile("../../images/" + rand_num1.ToString() + ".jpg");
-                    ButtonInfo[rand_num2] = rand_num1;
-                    int height = rand_num2 / SettingsSave.Default.Width;
-                    int width = rand_num2 % SettingsSave.Default.Height;
-                    matrix[height, width] = rand_num1;
+                    btn[Height,Width].Image = Image.FromFile("../../images/" + randShape.ToString() + ".jpg");
+                    ButtonInfo[Height,Width] = randShape;
                     x--;
                 }
             }
@@ -115,15 +130,21 @@ namespace OOP_LAB1
 
         bool CheckIsOver()
         {
+            int number = 0;
 
-            int i = SettingsSave.Default.Width * SettingsSave.Default.Height-1;
-            while (i>=0)
+            for(int i = 0; i < SettingsSave.Default.Height; i++)
             {
-                if(ButtonInfo[i] == 0)
+                for(int j = 0; j < SettingsSave.Default.Width; j++)
                 {
-                    return false;
-                };
-                i--;
+                    if (ButtonInfo[i,j] == 0)
+                    {
+                        number++;
+                    }
+                }
+            }
+            if(number >= 3)
+            {
+                return false;
             }
             MessageBox.Show("GAME IS OVER!!!");
             return true;
@@ -137,28 +158,24 @@ namespace OOP_LAB1
 
 
 
-
-
-
-
-
-
-
             // Changing the values between previous and last clicked buttons
-            btn[int.Parse(btn_now.Name)].Image = Image.FromFile("../../images/" + ButtonInfo[int.Parse(Remember)] + ".jpg");
-            ButtonInfo[int.Parse(btn_now.Name)] = ButtonInfo[int.Parse(Remember)];
-            ButtonInfo[int.Parse(Remember)] = 0;
-            btn[int.Parse(Remember)].Image = default;
 
-            int height = int.Parse(btn_now.Name) / SettingsSave.Default.Width;
-            int width = int.Parse(btn_now.Name) % SettingsSave.Default.Height;
+            int i = int.Parse(btn_now.Name[0].ToString());
+            int j = int.Parse(btn_now.Name[1].ToString());
 
-            matrix[height, width] = ButtonInfo[int.Parse(btn_now.Name)];
+            int x = int.Parse(Remember[0].ToString());
+            int y = int.Parse(Remember[1].ToString());
 
-            height = int.Parse(Remember) / SettingsSave.Default.Width;
-            width = int.Parse(Remember) % SettingsSave.Default.Height;
+            btn[i,j].Image = Image.FromFile("../../images/" + ButtonInfo[x,y] + ".jpg");
+            ButtonInfo[i,j] = ButtonInfo[x,y];
+            ButtonInfo[x,y] = 0;
+            btn[x, y].Image = default;
 
-            matrix[height, width] = 0;
+            // Playing Sound for the move
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../sounds/move.wav");
+            player.Play();
+
+
         }
 
         void StartGame()
@@ -168,14 +185,13 @@ namespace OOP_LAB1
             {
                 for (int j = 0; j < SettingsSave.Default.Width; j++)
                 {
-                    btn[number] = new Button();
-                    btn[number].Name = number.ToString();
-                    btn[number].Size = new Size(35, 35);
-                    btn[number].Location = new Point(35 * (j + 2), 35 * (i + 2));
-                    btn[number].Click += new EventHandler(ButtonArray_click);
-                    ButtonInfo[number] = 0;
-                    Controls.Add(btn[number]);
-                    matrix[i,j] = 0;
+                    btn[i,j] = new Button();
+                    btn[i,j].Name = i.ToString()+j.ToString();
+                    btn[i,j].Size = new Size(35, 35);
+                    btn[i, j].Location = new Point(35 * (j + 2), 35 * (i + 2));
+                    btn[i, j].Click += new EventHandler(ButtonArray_click);
+                    ButtonInfo[i, j] = 0;
+                    Controls.Add(btn[i, j]);
                     number++;
                 }
             }
@@ -185,28 +201,104 @@ namespace OOP_LAB1
         void RestartGame()
         {
             score = 0;
-            int number = 0;
             for (int i = 0; i < SettingsSave.Default.Height; i++)
             {
                 for (int j = 0; j < SettingsSave.Default.Width; j++)
                 {
-                    ButtonInfo[number] = 0;
-                    matrix[i, j] = 0;
-                    btn[number].Image = default;
-                    number++;
+                    ButtonInfo[i,j] = 0;
+                    btn[i,j].Image = default;
                 }
             }
             Random3Objects();
         }
-        
+
         void CheckIsScore(Button btn_now)
         {
 
-            int height = int.Parse(btn_now.Name) / SettingsSave.Default.Width;
-            int width = int.Parse(btn_now.Name) % SettingsSave.Default.Height;
-
             
+            int x = int.Parse(btn_now.Name[0].ToString());
+            int y = int.Parse(btn_now.Name[1].ToString());
+
+            // Checking For Vertical Score
+
+            for(int i = 0; i<SettingsSave.Default.Height - 4; i++)
+            {
+                int[,] arrX = new int[5, 2];
+                int LastBlock = ButtonInfo[i,y];
+                int count = 0;
+                for(int j = 0; j < 5; j++)
+                {
+                    if(ButtonInfo[i+j,y] == LastBlock && ButtonInfo[i+j,y] != 0)
+                    {
+                        count++;
+                    }
+                    if(count == 5)
+                    {
+                        arrX[4, 0] = i + j - 4;
+                        arrX[4, 1] = y;
+                        arrX[3, 0] = i + j - 3;
+                        arrX[3, 1] = y;
+                        arrX[2, 0] = i + j - 2;
+                        arrX[2, 1] = y;
+                        arrX[1, 0] = i + j - 1;
+                        arrX[1, 1] = y;
+                        arrX[0, 0] = i + j;
+                        arrX[0, 1] = y;
+                        DestroyBlocks(arrX);
+                        GiveScore();
+                    }
+                }
+            }
+
+
+            // Checking For Horizontal Score
+
+            for (int i = 0; i < SettingsSave.Default.Width - 4; i++)
+            {
+                int[,] arrY = new int[5, 2];
+                int LastBlock = ButtonInfo[x, i];
+                int count = 0;
+                for (int j = 0; j < 5; j++)
+                {
+                    if (ButtonInfo[x, i+j] == LastBlock && ButtonInfo[x, i+j] != 0)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    if (count == 5)
+                    {
+                        arrY[4, 1] = i + j - 4;
+                        arrY[4, 0] = x;
+                        arrY[3, 1] = i + j - 3;
+                        arrY[3, 0] = x;
+                        arrY[2, 1] = i + j - 2;
+                        arrY[2, 0] = x;
+                        arrY[1, 1] = i + j - 1;
+                        arrY[1, 0] = x;
+                        arrY[0, 1] = i + j;
+                        arrY[0, 0] = x;
+                        DestroyBlocks(arrY);
+                        GiveScore();
+                    }
+                }
+            }
+
         }
+
+        void DestroyBlocks(int[,] arr)
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                ButtonInfo[arr[i, 0], arr[i, 1]] = 0;
+                btn[arr[i, 0], arr[i, 1]].Image = default;
+            }
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../sounds/score.wav");
+            player.Play();
+        }
+
         void GiveScore()
         {
             if (SettingsSave.Default.Diffuculty == "Easy") score += 1;
@@ -215,6 +307,7 @@ namespace OOP_LAB1
             else if (SettingsSave.Default.Diffuculty == "Custom") score += 2;
         }
 
-    }
 
+    }
 }
+ 

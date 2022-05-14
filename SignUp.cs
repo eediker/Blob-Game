@@ -59,8 +59,9 @@ namespace OOP_LAB1
             XElement City = new XElement("city", CityField.Text);
             XElement Country = new XElement("country", CountryField.Text);
             XElement Email = new XElement("email", EmailField.Text);
+            XElement Score = new XElement("score");
             element.Add(UserName, Password, NameSurname,
-                PhoneNumber, Address, City, Country, Email);
+                PhoneNumber, Address, City, Country, Email,Score);
             root.Add(element);
             xmlDoc.Save("../../RegisteredUsers.xml");
             MessageBox.Show("Succesfully registered");
