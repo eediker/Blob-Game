@@ -65,8 +65,9 @@ namespace OOP_LAB1
         {
             var Settings = new Settings();
             string remember = SettingsSave.Default.Diffuculty;
+            int remember2 = SettingsSave.Default.Width + SettingsSave.Default.Width;
             Settings.ShowDialog();
-            if (SettingsSave.Default.Diffuculty != remember)
+            if (SettingsSave.Default.Diffuculty != remember || remember2 != SettingsSave.Default.Width + SettingsSave.Default.Width)
             {
                 Application.Restart();
             }
