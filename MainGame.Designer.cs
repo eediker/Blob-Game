@@ -36,7 +36,7 @@
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(669, 54);
+            this.SettingsButton.Location = new System.Drawing.Point(1257, 41);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(119, 23);
             this.SettingsButton.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // ShowUserProfile
             // 
-            this.ShowUserProfile.Location = new System.Drawing.Point(669, 12);
+            this.ShowUserProfile.Location = new System.Drawing.Point(1257, 12);
             this.ShowUserProfile.Name = "ShowUserProfile";
             this.ShowUserProfile.Size = new System.Drawing.Size(119, 23);
             this.ShowUserProfile.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // AdminPanelButton
             // 
-            this.AdminPanelButton.Location = new System.Drawing.Point(667, 131);
+            this.AdminPanelButton.Location = new System.Drawing.Point(1255, 99);
             this.AdminPanelButton.Name = "AdminPanelButton";
             this.AdminPanelButton.Size = new System.Drawing.Size(121, 23);
             this.AdminPanelButton.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             // AboutScreenButton
             // 
-            this.AboutScreenButton.Location = new System.Drawing.Point(669, 92);
+            this.AboutScreenButton.Location = new System.Drawing.Point(1257, 70);
             this.AboutScreenButton.Name = "AboutScreenButton";
             this.AboutScreenButton.Size = new System.Drawing.Size(119, 23);
             this.AboutScreenButton.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1390, 650);
             this.Controls.Add(this.AboutScreenButton);
             this.Controls.Add(this.AdminPanelButton);
             this.Controls.Add(this.ShowUserProfile);

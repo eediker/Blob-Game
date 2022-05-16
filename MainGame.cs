@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace OOP_LAB1
 {
-
-
     public partial class MainGame : Form
     {
         int[,] ButtonInfo = new int[SettingsSave.Default.Width , SettingsSave.Default.Height];
@@ -39,8 +37,8 @@ namespace OOP_LAB1
         {
 
             Button btn_now = sender as Button;
-            int i = int.Parse(btn_now.Name[0].ToString());
-            int j = int.Parse(btn_now.Name[1].ToString());
+            int i = int.Parse(btn_now.Name.Substring(0, btn_now.Name.IndexOf(',')));
+            int j = int.Parse(btn_now.Name.Substring(btn_now.Name.IndexOf(',') + 1));
 
             if (ButtonInfo[i,j] != 0)
             {
@@ -100,19 +98,19 @@ namespace OOP_LAB1
         void Random3Objects()
         {
 
-            int number = 0;
+            int x = 0;
             for (int i = 0; i < SettingsSave.Default.Height; i++)
             {
                 for (int j = 0; j < SettingsSave.Default.Width; j++)
                 {
                     if (ButtonInfo[i, j] == 0)
                     {
-                        number++;
+                        x++;
                     }
                 }
             }
-
-            int x = 3;
+            if(x >= 3) x = 3;
+   
             while (x > 0)
             {
                 Random rd = new Random();
@@ -160,11 +158,11 @@ namespace OOP_LAB1
 
             // Changing the values between previous and last clicked buttons
 
-            int i = int.Parse(btn_now.Name[0].ToString());
-            int j = int.Parse(btn_now.Name[1].ToString());
+            int i = int.Parse(btn_now.Name.Substring(0, btn_now.Name.IndexOf(',')));
+            int j = int.Parse(btn_now.Name.Substring(btn_now.Name.IndexOf(',') + 1));
 
-            int x = int.Parse(Remember[0].ToString());
-            int y = int.Parse(Remember[1].ToString());
+            int x = int.Parse(Remember.Substring(0, Remember.IndexOf(',')));
+            int y = int.Parse(Remember.Substring(Remember.IndexOf(',') + 1));
 
             btn[i,j].Image = Image.FromFile("../../images/" + ButtonInfo[x,y] + ".jpg");
             ButtonInfo[i,j] = ButtonInfo[x,y];
@@ -180,19 +178,17 @@ namespace OOP_LAB1
 
         void StartGame()
         {
-            int number = 0;
             for (int i = 0; i < SettingsSave.Default.Height; i++)
             {
                 for (int j = 0; j < SettingsSave.Default.Width; j++)
                 {
                     btn[i,j] = new Button();
-                    btn[i,j].Name = i.ToString()+j.ToString();
+                    btn[i,j].Name = i.ToString()+ " , " + j.ToString();
                     btn[i,j].Size = new Size(35, 35);
                     btn[i, j].Location = new Point(35 * (j + 2), 35 * (i + 2));
                     btn[i, j].Click += new EventHandler(ButtonArray_click);
                     ButtonInfo[i, j] = 0;
                     Controls.Add(btn[i, j]);
-                    number++;
                 }
             }
             Random3Objects();
@@ -215,24 +211,24 @@ namespace OOP_LAB1
         void CheckIsScore(Button btn_now)
         {
 
-            
-            int x = int.Parse(btn_now.Name[0].ToString());
-            int y = int.Parse(btn_now.Name[1].ToString());
+
+            int x = int.Parse(btn_now.Name.Substring(0, btn_now.Name.IndexOf(',')));
+            int y = int.Parse(btn_now.Name.Substring(btn_now.Name.IndexOf(',') + 1));
 
             // Checking For Vertical Score
 
-            for(int i = 0; i<SettingsSave.Default.Height - 4; i++)
+            for (int i = 0; i < SettingsSave.Default.Height - 4; i++)
             {
                 int[,] arrX = new int[5, 2];
-                int LastBlock = ButtonInfo[i,y];
+                int LastBlock = ButtonInfo[i, y];
                 int count = 0;
-                for(int j = 0; j < 5; j++)
+                for (int j = 0; j < 5; j++)
                 {
-                    if(ButtonInfo[i+j,y] == LastBlock && ButtonInfo[i+j,y] != 0)
+                    if (ButtonInfo[i + j, y] == LastBlock && ButtonInfo[i + j, y] != 0)
                     {
                         count++;
                     }
-                    if(count == 5)
+                    if (count == 5)
                     {
                         arrX[4, 0] = i + j - 4;
                         arrX[4, 1] = y;
@@ -260,7 +256,7 @@ namespace OOP_LAB1
                 int count = 0;
                 for (int j = 0; j < 5; j++)
                 {
-                    if (ButtonInfo[x, i+j] == LastBlock && ButtonInfo[x, i+j] != 0)
+                    if (ButtonInfo[x, i + j] == LastBlock && ButtonInfo[x, i + j] != 0)
                     {
                         count++;
                     }
