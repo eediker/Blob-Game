@@ -47,12 +47,24 @@ namespace OOP_LAB1
             }
             else if (ButtonInfo[i,j] == 0 && flag == true)
             {
+                int x = int.Parse(Remember.Substring(0, Remember.IndexOf(',')));
+                int y = int.Parse(Remember.Substring(Remember.IndexOf(',') + 1));
+                List<QItem> list = new List<QItem>();  
 
-                MakeaMove(btn_now);
-                CheckIsScore(btn_now);
+                if(minDistance(x,y,i,j,ref list))
+                {
+                    MakeaMove(list);
+                    CheckIsScore(btn_now);
+                    Random3Objects();
+                }
+                else
+                {
+                    MessageBox.Show("No PATH for this move!");
+                }
+
 
                 flag = false;
-                Random3Objects();
+                
                 Remember = "0";
             }
             if (CheckIsOver())
@@ -95,6 +107,8 @@ namespace OOP_LAB1
         {
 
         }
+
+
 
         void Random3Objects()
         {
@@ -149,33 +163,151 @@ namespace OOP_LAB1
             return true;
         }
 
-        void MakeaMove(Button btn_now)
+        class QItem
+        {
+            public int row;
+            public int col;
+            public int dist;
+            public QItem prev;
+            public QItem(int x, int y, int w)
+            {
+                row = x;
+                col = y;
+                prev = null;
+            }
+        };
+
+
+        bool minDistance(int srcX, int srcY, int destX, int destY,ref List<QItem> arr)
+        {
+            char[,] grid = new char[SettingsSave.Default.Height, SettingsSave.Default.Width];
+            for (int i = 0; i < SettingsSave.Default.Height; i++)
+            {
+                for (int j = 0; j < SettingsSave.Default.Width; j++)
+                {
+                    if (ButtonInfo[i, j] != 0) grid[i, j] = '0';
+                    if (ButtonInfo[i, j] == 0) grid[i, j] = '*';
+                    if (i == srcX && j == srcY) grid[i, j] = 's';
+                    if (i == destX && j == destY) grid[i, j] = 'd';
+                }
+            }
+
+
+            QItem source = new QItem(0, 0, 0);
+
+            // To keep track of visited QItems. Marking
+            // blocked cells as visited.
+            bool[,] visited = new bool[SettingsSave.Default.Height,SettingsSave.Default.Width] ;
+            for (int i = 0; i < SettingsSave.Default.Height; i++)
+            {
+                for (int j = 0; j < SettingsSave.Default.Width; j++)
+                {
+                    if (grid[i,j] == '0')
+                        visited[i,j] = true;
+                    else
+                        visited[i,j] = false;
+
+                    // Finding source
+                    if (grid[i,j] == 's')
+                    {
+                        source.row = i;
+                        source.col = j;
+                    }
+                }
+            }
+
+            // applying BFS on matrix cells starting from source
+            List<QItem> list = new List<QItem>();
+            list.Add(source);
+            visited[source.row,source.col] = true;
+            while (list.Any())
+            {
+                QItem p = list[0];
+                list.RemoveAt(0);
+
+                // Destination found;
+                if (grid[p.row,p.col] == 'd')
+                {
+                    while(p != null)
+                    {
+                        arr.Add(p);
+                        p = p.prev;
+                    }
+                    return true;
+                }
+
+
+                // moving up
+                if (p.row - 1 >= 0 &&
+                    visited[p.row - 1,p.col] == false)
+                {
+                    QItem q = new QItem(p.row - 1, p.col, p.dist + 1);
+                    q.prev = p;
+                    list.Add(q);
+                    visited[p.row - 1,p.col] = true;
+                }
+
+                // moving down
+                if (p.row + 1 < SettingsSave.Default.Height &&
+                    visited[p.row + 1,p.col] == false)
+                {
+                    QItem q = new QItem(p.row + 1, p.col, p.dist + 1);
+                    q.prev = p;
+                    list.Add(q);
+                    visited[p.row + 1,p.col] = true;
+                }
+
+                // moving left
+                if (p.col - 1 >= 0 &&
+                    visited[p.row,p.col - 1] == false)
+                {
+                    QItem q = new QItem(p.row, p.col - 1, p.dist + 1);
+                    q.prev = p;
+                    list.Add(q);
+                    visited[p.row,p.col - 1] = true;
+                }
+
+                // moving right
+                if (p.col + 1 < SettingsSave.Default.Width &&
+                    visited[p.row,p.col + 1] == false)
+                {
+                    QItem q = new QItem(p.row, p.col + 1, p.dist + 1);
+                    q.prev = p;
+                    list.Add(q);
+                    visited[p.row,p.col + 1] = true;
+                }
+            }
+            return false;
+        }
+
+        void MakeaMove(List<QItem> list)
         {
 
+            for (int m = list.Count-1; m > 0; m--)
+            {
+                int sleepTime = 1000;
+                Task.Delay(sleepTime).Wait();
 
+                int i = list[m].row;
+                int j = list[m].col;
 
+                int x = list[m - 1].row;
+                int y = list[m - 1].col;
 
+                btn[x, y].Image = Image.FromFile("../../images/" + ButtonInfo[i, j] + ".jpg");
+                ButtonInfo[x, y] = ButtonInfo[i, j];
+                ButtonInfo[i, j] = 0;
+                btn[i, j].Image = default;
 
+                // Playing Sound for the move
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../sounds/move.wav");
+                player.Play();
 
-            // Changing the values between previous and last clicked buttons
-
-            int i = int.Parse(btn_now.Name.Substring(0, btn_now.Name.IndexOf(',')));
-            int j = int.Parse(btn_now.Name.Substring(btn_now.Name.IndexOf(',') + 1));
-
-            int x = int.Parse(Remember.Substring(0, Remember.IndexOf(',')));
-            int y = int.Parse(Remember.Substring(Remember.IndexOf(',') + 1));
-
-            btn[i,j].Image = Image.FromFile("../../images/" + ButtonInfo[x,y] + ".jpg");
-            ButtonInfo[i,j] = ButtonInfo[x,y];
-            ButtonInfo[x,y] = 0;
-            btn[x, y].Image = default;
-
-            // Playing Sound for the move
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../sounds/move.wav");
-            player.Play();
-
+            }
 
         }
+
+
 
         void StartGame()
         {
