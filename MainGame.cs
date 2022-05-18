@@ -69,19 +69,46 @@ namespace OOP_LAB1
             }
             if (CheckIsOver())
             {
+                
                 RestartGame();
             }
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            var Settings = new Settings();
+            int remember2 = SettingsSave.Default.Width;
+            int remember3 = SettingsSave.Default.Height;
             string remember = SettingsSave.Default.Diffuculty;
-            int remember2 = SettingsSave.Default.Width + SettingsSave.Default.Width;
+
+            bool rememberSquare = SettingsSave.Default.Square;
+            bool rememberRound = SettingsSave.Default.Round;
+            bool rememberTriangle = SettingsSave.Default.Triangle;
+            bool rememberRed = SettingsSave.Default.Red;
+            bool rememberYellow = SettingsSave.Default.Yellow;
+            bool rememberBlue = SettingsSave.Default.Blue;
+
+            var Settings = new Settings();
             Settings.ShowDialog();
-            if (SettingsSave.Default.Diffuculty != remember || remember2 != SettingsSave.Default.Width + SettingsSave.Default.Width)
+
+
+            if (SettingsSave.Default.Diffuculty != remember)
             {
                 Application.Restart();
+            }
+
+            if (remember2 != SettingsSave.Default.Width && remember3 != SettingsSave.Default.Height)
+            {
+                Application.Restart();
+            }
+
+            if (SettingsSave.Default.Diffuculty == "Custom")
+            {
+                if (rememberRound != SettingsSave.Default.Round) Application.Restart();
+                if (rememberSquare != SettingsSave.Default.Square) Application.Restart();
+                if (rememberTriangle != SettingsSave.Default.Triangle) Application.Restart();
+                if (rememberRed != SettingsSave.Default.Red) Application.Restart();
+                if (rememberYellow != SettingsSave.Default.Yellow) Application.Restart();
+                if (rememberBlue != SettingsSave.Default.Blue) Application.Restart();
             }
         }
 
@@ -112,30 +139,48 @@ namespace OOP_LAB1
 
         void Random3Objects()
         {
-
-            int x = 0;
-            for (int i = 0; i < SettingsSave.Default.Height; i++)
+            List<int> list = new List<int>();
+            if (SettingsSave.Default.Diffuculty != "Custom")
             {
-                for (int j = 0; j < SettingsSave.Default.Width; j++)
+
+                for (int i = 1; i < 10; i++)
                 {
-                    if (ButtonInfo[i, j] == 0)
-                    {
-                        x++;
-                    }
+                    list.Add(i);
                 }
             }
-            if(x >= 3) x = 3;
-   
+            else
+            {
+                if (SettingsSave.Default.Round == true)
+                {
+                    if (SettingsSave.Default.Red == true) list.Add(1);
+                    if (SettingsSave.Default.Blue == true) list.Add(4);
+                    if (SettingsSave.Default.Yellow == true) list.Add(7);
+                }
+                if (SettingsSave.Default.Square == true)
+                {
+                    if (SettingsSave.Default.Red == true) list.Add(2);
+                    if (SettingsSave.Default.Blue == true) list.Add(5);
+                    if (SettingsSave.Default.Yellow == true) list.Add(8);
+                }
+                if (SettingsSave.Default.Triangle == true)
+                {
+                    if (SettingsSave.Default.Red == true) list.Add(3);
+                    if (SettingsSave.Default.Blue == true) list.Add(6);
+                    if (SettingsSave.Default.Yellow == true) list.Add(9);
+                }
+            }
+
+            int x = 3;
             while (x > 0)
             {
                 Random rd = new Random();
-                int randShape = rd.Next(1, 10);
+                int randShape = list[rd.Next(0, list.Count)];
                 int Width = rd.Next(0, SettingsSave.Default.Width);
-                int Height = rd.Next(0, SettingsSave.Default.Height); 
-                if (ButtonInfo[Height,Width] == 0)
+                int Height = rd.Next(0, SettingsSave.Default.Height);
+                if (ButtonInfo[Height, Width] == 0)
                 {
-                    btn[Height,Width].Image = Image.FromFile("../../images/" + randShape.ToString() + ".jpg");
-                    ButtonInfo[Height,Width] = randShape;
+                    btn[Height, Width].Image = Image.FromFile("../../images/" + randShape.ToString() + ".jpg");
+                    ButtonInfo[Height, Width] = randShape;
                     x--;
                 }
             }
@@ -285,7 +330,7 @@ namespace OOP_LAB1
 
             for (int m = list.Count-1; m > 0; m--)
             {
-                int sleepTime = 1000;
+                int sleepTime = 100;
                 Task.Delay(sleepTime).Wait();
 
                 int i = list[m].row;
@@ -302,12 +347,8 @@ namespace OOP_LAB1
                 // Playing Sound for the move
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../sounds/move.wav");
                 player.Play();
-
             }
-
         }
-
-
 
         void StartGame()
         {

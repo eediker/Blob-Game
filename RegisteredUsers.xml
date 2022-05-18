@@ -9,6 +9,7 @@
     <city></city>
     <country></country>
     <email></email>
+    <score></score>
   </user>
   <user>
     <username>user</username>
@@ -19,5 +20,6 @@
     <city></city>
     <country></country>
     <email></email>
+    <score></score>
   </user>
 </users>
