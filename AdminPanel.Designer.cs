@@ -76,7 +76,9 @@
             this.UsersList = new System.Windows.Forms.DataGridView();
             this.kullanıclarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.kullanıcılarDataSet = new OOP_LAB1.KullanıcılarDataSet();
             this.kullanıclarBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.kullanıclarTableAdapter = new OOP_LAB1.KullanıcılarDataSetTableAdapters.KullanıclarTableAdapter();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namesurnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,7 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.UsersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanıclarBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
-
+            ((System.ComponentModel.ISupportInitialize)(this.kullanıcılarDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanıclarBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -548,17 +550,17 @@
             // 
             // kullanıcılarDataSet
             // 
-
-
+            this.kullanıcılarDataSet.DataSetName = "KullanıcılarDataSet";
+            this.kullanıcılarDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // kullanıclarBindingSource1
             // 
             this.kullanıclarBindingSource1.DataMember = "Kullanıclar";
-
+            this.kullanıclarBindingSource1.DataSource = this.kullanıcılarDataSet;
             // 
             // kullanıclarTableAdapter
             // 
-
+            this.kullanıclarTableAdapter.ClearBeforeFill = true;
             // 
             // usernameDataGridViewTextBoxColumn
             // 
@@ -633,7 +635,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.UsersList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanıclarBindingSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
-
+            ((System.ComponentModel.ISupportInitialize)(this.kullanıcılarDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanıclarBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -689,9 +691,9 @@
         private System.Windows.Forms.TextBox RemoveUsernameField;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DeleteTheUser;
-
+        private KullanıcılarDataSet kullanıcılarDataSet;
         private System.Windows.Forms.BindingSource kullanıclarBindingSource1;
-
+        private KullanıcılarDataSetTableAdapters.KullanıclarTableAdapter kullanıclarTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn namesurnameDataGridViewTextBoxColumn;
