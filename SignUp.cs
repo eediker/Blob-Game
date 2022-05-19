@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Xml.Linq;
+using System.Data.SqlClient;
 
 namespace OOP_LAB1
 {
     public partial class SignUp : Form
     {
+        SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
         public SignUp()
         {
             InitializeComponent();
@@ -36,37 +38,36 @@ namespace OOP_LAB1
 
         private void SaveTheUser_Click(object sender, EventArgs e)
         {
+            _connection.Open();
+            SqlCommand read = new SqlCommand("SELECT * FROM Kullanıclar Where username =@P1", _connection);
+            read.Parameters.AddWithValue("@P1", UsernameField.Text);
+            SqlDataReader reader = read.ExecuteReader();
 
-            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
-
-            var Users = xmlDoc.Descendants("user");
-            foreach (var xUser in Users)
+            if (reader.Read())
             {
-                if (xUser.Element("username").Value == UsernameField.Text)
-                {
-                    MessageBox.Show("There is an user with this username!");
-                    return;
-                }
-                    
+                MessageBox.Show("There is a user with this information");
+                reader.Close();
+                _connection.Close();
             }
-            XElement root = xmlDoc.Descendants("users").First();
-            XElement element = new XElement("user");
-            XElement UserName = new XElement("username", UsernameField.Text);
-            XElement Password = new XElement("password", Sha256Hash(PasswordField.Text));
-            XElement NameSurname = new XElement("name-surname", NameSurnameField.Text);
-            XElement PhoneNumber = new XElement("phone-number", PhoneNumberField.Text);
-            XElement Address = new XElement("address", AddressField.Text);
-            XElement City = new XElement("city", CityField.Text);
-            XElement Country = new XElement("country", CountryField.Text);
-            XElement Email = new XElement("email", EmailField.Text);
-            XElement Score = new XElement("score");
-            element.Add(UserName, Password, NameSurname,
-                PhoneNumber, Address, City, Country, Email,Score);
-            root.Add(element);
-            xmlDoc.Save("../../RegisteredUsers.xml");
-            MessageBox.Show("Succesfully registered");
-            this.Hide();
+            else
+            {
+                SqlCommand insert = new SqlCommand("INSERT INTO Kullanıclar(username,password,name_surname,phone_number,address,city,country,email,score) VALUES (@username,@password,@name_surname,@phone_number,@address,@city,@country,@email,@score)", _connection);
+                insert.Parameters.AddWithValue("@username", UsernameField.Text);
+                insert.Parameters.AddWithValue("@password", Sha256Hash(PasswordField.Text));
+                insert.Parameters.AddWithValue("@name_surname", NameSurnameField.Text);
+                insert.Parameters.AddWithValue("@phone_number", PhoneNumberField.Text);
+                insert.Parameters.AddWithValue("@address", AddressField.Text);
+                insert.Parameters.AddWithValue("@city", CityField.Text);
+                insert.Parameters.AddWithValue("@country", CountryField.Text);
+                insert.Parameters.AddWithValue("@email", EmailField.Text);
+                insert.Parameters.AddWithValue("@score", 0);
 
+                reader.Close();
+                insert.ExecuteNonQuery();
+                _connection.Close();
+                MessageBox.Show("Succesfully registered");
+                this.Hide();
+            }
         }
     }
 }
