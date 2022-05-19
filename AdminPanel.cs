@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 
 namespace OOP_LAB1
 {
     public partial class AdminPanel : Form
     {
+        SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
         public AdminPanel()
         {
             InitializeComponent();
@@ -35,108 +37,107 @@ namespace OOP_LAB1
             }
         }
 
-        public void LoadTheData()
-        {
-            XmlDocument x = new XmlDocument();
-            DataSet ds = new DataSet();
-            XmlReader xmlFile;
-            xmlFile = XmlReader.Create("../../RegisteredUsers.xml", new XmlReaderSettings());
-            ds.ReadXml(xmlFile);
-            dataGridView1.DataSource = ds.Tables[0];
-            xmlFile.Close();
-        }
-
         private void AddNewUser_Click(object sender, EventArgs e)
         {
-            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
+            _connection.Open();
+            SqlCommand read = new SqlCommand("SELECT * FROM Kullanıclar Where username =@P1", _connection);
+            read.Parameters.AddWithValue("@P1", AddUsernameField.Text);
+            SqlDataReader reader = read.ExecuteReader();
 
-            var Users = xmlDoc.Descendants("user");
-            foreach (var xUser in Users)
+            if (reader.Read())
             {
-                if (xUser.Element("username").Value == UsernameField.Text)
-                {
-                    MessageBox.Show("There is an user with this username!");
-                    return;
-                }
-
+                MessageBox.Show("There is a user with this information");
+                reader.Close();
+                _connection.Close();
             }
-            XElement root = xmlDoc.Descendants("users").First();
-            XElement element = new XElement("user");
-            XElement UserName = new XElement("username", UsernameField.Text);
-            XElement Password = new XElement("password", Sha256Hash(PasswordField.Text));
-            XElement NameSurname = new XElement("name-surname", NameSurnameField.Text);
-            XElement PhoneNumber = new XElement("phone-number", PhoneNumberField.Text);
-            XElement Address = new XElement("address", AddressField.Text);
-            XElement City = new XElement("city", CityField.Text);
-            XElement Country = new XElement("country", CountryField.Text);
-            XElement Email = new XElement("email", EmailField.Text);
-            element.Add(UserName, Password, NameSurname,
-                PhoneNumber, Address, City, Country, Email);
-            root.Add(element);
-            xmlDoc.Save("../../RegisteredUsers.xml");
-            MessageBox.Show("Succesfully registered");
-            LoadTheData();
-        }
+            else
+            {
+                SqlCommand insert = new SqlCommand("INSERT INTO Kullanıclar(username,password,name_surname,phone_number,address,city,country,email,score) VALUES (@username,@password,@name_surname,@phone_number,@address,@city,@country,@email,@score)", _connection);
+                insert.Parameters.AddWithValue("@username", AddUsernameField.Text);
+                insert.Parameters.AddWithValue("@password", Sha256Hash(AddPasswordField.Text));
+                insert.Parameters.AddWithValue("@name_surname", AddNameField.Text);
+                insert.Parameters.AddWithValue("@phone_number", AddPhoneField.Text);
+                insert.Parameters.AddWithValue("@address", AddAddressField.Text);
+                insert.Parameters.AddWithValue("@city", AddCityField.Text);
+                insert.Parameters.AddWithValue("@country", AddCountryField.Text);
+                insert.Parameters.AddWithValue("@email", AddEmailField.Text);
+                insert.Parameters.AddWithValue("@score", 0);
 
+                reader.Close();
+                insert.ExecuteNonQuery();
+                _connection.Close();
+                MessageBox.Show("Succesfully Created a new user");
+            }
+        }
         private void DeleteAnUser_Click(object sender, EventArgs e)
         {
-            if (UsernameField.Text == "user" || UsernameField.Text == "admin")
-            {
-                MessageBox.Show("You cant delete these preregistered users!");
-                return;
-            }
+            //_connection.Open();
+            
+            
+            //    if(MessageBox.Show("Are you sure want to delete this user ?", "This cant be undone", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
+            //        SqlCommand cmd = new SqlCommand("DELETE FROM Kullancılar where username = @username", _connection);
+            //        cmd.Parameters.AddWithValue("@username", RemoveUsernameField.Text);
+            //        cmd.ExecuteNonQuery();
+            //    }
 
-            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
-
-            var Users = xmlDoc.Descendants("user");
-            foreach (var xUser in Users)
-            {
-                if (xUser.Element("username").Value == UsernameField.Text)
-                {
-                    xUser.Remove();
-                    xmlDoc.Save("../../RegisteredUsers.xml");
-                    MessageBox.Show("User deleted...");
-                    LoadTheData();
-                    return;
-                }
-            }
-            MessageBox.Show("There is no user found with this informations");
-
-
-        }
-
-        private void AdminPanel_Load(object sender, EventArgs e)
-        {
-            LoadTheData();
+            //_connection.Close();
         }
 
         private void UpdateUserInfo_Click(object sender, EventArgs e)
         {
-            if (UsernameField.Text == "user" || UsernameField.Text == "admin")
+
+            
+
+
+        }
+
+        private void UpdateFindUser_Click(object sender, EventArgs e)
+        {
+            if (UpdateUsernameField.Text == "user" || UpdateUsernameField.Text == "admin")
             {
                 MessageBox.Show("You cant update these preregistered users!");
                 return;
             }
 
-            XDocument x = XDocument.Load("../../RegisteredUsers.xml");
+            _connection.Open();
 
-            XElement node = x.Element("users").Elements("user").FirstOrDefault(a => a.Element("username").Value == UsernameField.Text);
-            if (node != null)
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıclar Where username =@P1", _connection);
+            cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
             {
-                node.SetElementValue("password", Sha256Hash(PasswordField.Text));
-                node.SetElementValue("name-surname", NameSurnameField.Text);
-                node.SetElementValue("phone-number", PhoneNumberField.Text);
-                node.SetElementValue("address", AddressField.Text);
-                node.SetElementValue("city", CityField.Text);
-                node.SetElementValue("country", CountryField.Text);
-                node.SetElementValue("email", EmailField.Text);
-                x.Save("../../RegisteredUsers.xml");
-                LoadTheData();
+                UpdateUsernameField.Text = reader["username"].ToString();
+                UpdateNameField.Text = reader["name_surname"].ToString();
+                UpdatePhoneField.Text = reader["phone_number"].ToString();
+                UpdateAddressField.Text = reader["address"].ToString();
+                UpdateCityField.Text = reader["city"].ToString();
+                UpdateCountryField.Text = reader["country"].ToString();
+                UpdateEmailField.Text = reader["email"].ToString();
+
+                SettingsSave.Default.Save();
+                reader.Close();
+                _connection.Close();
             }
             else
             {
-                MessageBox.Show("There is no user with this username");
+                MessageBox.Show("No user found with this username");
             }
+        }
+
+        private void AdminPanel_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'kullanıcılarDataSet.Kullanıclar' table. You can move, or remove it, as needed.
+            this.kullanıclarTableAdapter.Fill(this.kullanıcılarDataSet.Kullanıclar);
+            // TODO: This line of code loads data into the 'kullanıcılarDataSet.Kullanıclar' table. You can move, or remove it, as needed.
+            this.kullanıclarTableAdapter.Fill(this.kullanıcılarDataSet.Kullanıclar);
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
