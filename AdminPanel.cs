@@ -40,13 +40,20 @@ namespace OOP_LAB1
 
         public void LoadTheData()
         {
+            _connection.Open();
+            SqlCommand command = new SqlCommand("SELECT * FROM Kullanıcılar",_connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
 
+            DataTable tablo = new DataTable();
+            adapter.Fill(tablo);
+            UserLists.DataSource = tablo;
+            _connection.Close();
         }
 
         private void AddNewUser_Click(object sender, EventArgs e)
         {
             _connection.Open();
-            SqlCommand read = new SqlCommand("SELECT * FROM Kullanıclar Where username =@P1", _connection);
+            SqlCommand read = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1", _connection);
             read.Parameters.AddWithValue("@P1", AddUsernameField.Text);
             SqlDataReader reader = read.ExecuteReader();
 
@@ -58,7 +65,7 @@ namespace OOP_LAB1
             }
             else
             {
-                SqlCommand insert = new SqlCommand("INSERT INTO Kullanıclar(username,password,name_surname,phone_number,address,city,country,email,score) VALUES (@username,@password,@name_surname,@phone_number,@address,@city,@country,@email,@score)", _connection);
+                SqlCommand insert = new SqlCommand("INSERT INTO Kullanıcılar(username,password,name_surname,phone_number,address,city,country,email,score) VALUES (@username,@password,@name_surname,@phone_number,@address,@city,@country,@email,@score)", _connection);
                 insert.Parameters.AddWithValue("@username", AddUsernameField.Text);
                 insert.Parameters.AddWithValue("@password", Sha256Hash(AddPasswordField.Text));
                 insert.Parameters.AddWithValue("@name_surname", AddNameField.Text);

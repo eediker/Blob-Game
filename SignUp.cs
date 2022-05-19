@@ -39,7 +39,7 @@ namespace OOP_LAB1
         private void SaveTheUser_Click(object sender, EventArgs e)
         {
             _connection.Open();
-            SqlCommand read = new SqlCommand("SELECT * FROM Kullanıclar Where username =@P1", _connection);
+            SqlCommand read = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1", _connection);
             read.Parameters.AddWithValue("@P1", UsernameField.Text);
             SqlDataReader reader = read.ExecuteReader();
 
@@ -51,7 +51,7 @@ namespace OOP_LAB1
             }
             else
             {
-                SqlCommand insert = new SqlCommand("INSERT INTO Kullanıclar(username,password,name_surname,phone_number,address,city,country,email,score) VALUES (@username,@password,@name_surname,@phone_number,@address,@city,@country,@email,@score)", _connection);
+                SqlCommand insert = new SqlCommand("INSERT INTO Kullanıcılar(username,password,name_surname,phone_number,address,city,country,email,score) VALUES (@username,@password,@name_surname,@phone_number,@address,@city,@country,@email,@score)", _connection);
                 insert.Parameters.AddWithValue("@username", UsernameField.Text);
                 insert.Parameters.AddWithValue("@password", Sha256Hash(PasswordField.Text));
                 insert.Parameters.AddWithValue("@name_surname", NameSurnameField.Text);

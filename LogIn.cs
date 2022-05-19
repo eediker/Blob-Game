@@ -57,7 +57,7 @@ namespace OOP_LAB1
         {
             _connection.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıclar Where username =@P1 AND password= @P2 ", _connection);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1 AND password= @P2 ", _connection);
             cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
             cmd.Parameters.AddWithValue("@P2", Sha256Hash(PasswordField.Text));
             SqlDataReader reader = cmd.ExecuteReader();
