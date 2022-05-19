@@ -226,17 +226,5 @@ namespace OOP_LAB1 {
                 this["Email"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int BestScore {
-            get {
-                return ((int)(this["BestScore"]));
-            }
-            set {
-                this["BestScore"] = value;
-            }
-        }
     }
 }
