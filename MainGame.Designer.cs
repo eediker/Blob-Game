@@ -34,6 +34,8 @@
             this.AboutScreenButton = new System.Windows.Forms.Button();
             this.ShowBestScore = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ShowScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SettingsButton
@@ -96,11 +98,33 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Best Score";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(1270, 257);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 26);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Score";
+            // 
+            // ShowScore
+            // 
+            this.ShowScore.AutoSize = true;
+            this.ShowScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ShowScore.Location = new System.Drawing.Point(1267, 293);
+            this.ShowScore.Name = "ShowScore";
+            this.ShowScore.Size = new System.Drawing.Size(109, 46);
+            this.ShowScore.TabIndex = 7;
+            this.ShowScore.Text = "none";
+            // 
             // MainGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1390, 650);
+            this.Controls.Add(this.ShowScore);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ShowBestScore);
             this.Controls.Add(this.AboutScreenButton);
@@ -123,5 +147,7 @@
         private System.Windows.Forms.Button AboutScreenButton;
         private System.Windows.Forms.Label ShowBestScore;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ShowScore;
     }
 }

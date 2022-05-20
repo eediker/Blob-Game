@@ -32,7 +32,7 @@ namespace OOP_LAB1
             }
 
             ShowBestScore.Text = SettingsSave.Default.BestScore.ToString();
-
+            ShowScore.Text = "0";
 
             StartGame(); ;
 
@@ -61,6 +61,7 @@ namespace OOP_LAB1
                     MakeaMove(list);
                     CheckIsScore(btn_now);
                     Random3Objects();
+                    ShowScore.Text = score.ToString();
                 }
                 else
                 {
@@ -94,7 +95,7 @@ namespace OOP_LAB1
                     }
                 }
 
-
+                ShowScore.Text = "0";
                 RestartGame();
             }
         }
