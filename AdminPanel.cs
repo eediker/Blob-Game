@@ -41,12 +41,34 @@ namespace OOP_LAB1
         public void LoadTheData()
         {
             _connection.Open();
+            
+
             SqlCommand command = new SqlCommand("SELECT * FROM Kullanıcılar",_connection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
 
             DataTable tablo = new DataTable();
             adapter.Fill(tablo);
+
+
+            // Loading the data for datagriedview component
             UserLists.DataSource = tablo;
+
+            
+            // Loading the data for listview component
+            for(int i = 0; i < tablo.Rows.Count; i++)
+            {
+                listView1.Items.Add(tablo.Rows[i]["username"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["password"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["name_surname"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["phone_number"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["address"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["city"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["country"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["email"].ToString());
+                listView1.Items[i].SubItems.Add(tablo.Rows[i]["score"].ToString());
+
+            }
+
             _connection.Close();
         }
 
@@ -86,9 +108,22 @@ namespace OOP_LAB1
 
         private void DeleteAnUser_Click(object sender, EventArgs e)
         {
+            _connection.Open();
+            try
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM Kullanıcılar WHERE username=@username", _connection);
+                command.Parameters.AddWithValue("@username", listView1.SelectedItems[0].Text);
+                command.ExecuteNonQuery();
+                MessageBox.Show(listView1.SelectedItems[0].Text + "  silindi.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            listView1.Items.Clear();
 
-
-
+            _connection.Close();
+            LoadTheData();
         }
 
         private void AdminPanel_Load(object sender, EventArgs e)
@@ -98,7 +133,60 @@ namespace OOP_LAB1
 
         private void UpdateUserInfo_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+                _connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE Kullanıcılar SET password = @password , name_surname = @name_surname, phone_number = @phone_number , address = @address , city = @city , country = @country , email = @email WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@username", UpdateUsernameField.Text);
+                command.Parameters.AddWithValue("@password", Sha256Hash(UpdatePasswordField.Text));
+                command.Parameters.AddWithValue("@name_surname", UpdateNameField.Text);
+                command.Parameters.AddWithValue("@phone_number", UpdatePhoneField.Text);
+                command.Parameters.AddWithValue("@address", UpdateAddressField.Text);
+                command.Parameters.AddWithValue("@city", UpdateCityField.Text);
+                command.Parameters.AddWithValue("@country", UpdateCountryField.Text);
+                command.Parameters.AddWithValue("@email", UpdateEmailField.Text);
+                command.ExecuteNonQuery();
+                _connection.Close();
+                MessageBox.Show("User Informations updated.");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void FindUser_Click(object sender, EventArgs e)
+        {
+            _connection.Open();
+            if(UsernameField.Text == "user" || UsernameField.Text == "admin")
+            {
+                MessageBox.Show("This user cannot be modified!");
+                _connection.Close();
+                return;
+            }
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1", _connection);
+            cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                    UpdateUsernameField.Text = reader["username"].ToString();
+                    UpdateNameField.Text = reader["name_surname"].ToString();
+                    UpdatePhoneField.Text = reader["phone_number"].ToString();
+                    UpdateAddressField.Text = reader["address"].ToString();
+                    UpdateCityField.Text = reader["city"].ToString();
+                    UpdateCountryField.Text = reader["country"].ToString();
+                    UpdateEmailField.Text = reader["email"].ToString();
+            }
+            else
+            {
+                MessageBox.Show("No user with this information");
+            }
+            reader.Close();
+            _connection.Close();
+
         }
     }
 }
