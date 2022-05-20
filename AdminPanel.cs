@@ -53,7 +53,8 @@ namespace OOP_LAB1
             // Loading the data for datagriedview component
             UserLists.DataSource = tablo;
 
-            
+
+            listView1.Items.Clear();
             // Loading the data for listview component
             for(int i = 0; i < tablo.Rows.Count; i++)
             {
