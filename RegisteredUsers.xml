@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <user>
+    <username>admin</username>
+    <password>8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</password>
+    <name-surname></name-surname>
+    <phone-number></phone-number>
+    <address></address>
+    <city></city>
+    <country></country>
+    <email></email>
+    <score></score>
+  </user>
+  <user>
+    <username>user</username>
+    <password>04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</password>
+    <name-surname></name-surname>
+    <phone-number></phone-number>
+    <address></address>
+    <city></city>
+    <country></country>
+    <email></email>
+    <score></score>
+  </user>
+</users>
