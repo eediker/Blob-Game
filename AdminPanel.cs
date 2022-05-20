@@ -108,22 +108,23 @@ namespace OOP_LAB1
 
         private void DeleteAnUser_Click(object sender, EventArgs e)
         {
-            _connection.Open();
+
             try
             {
+                _connection.Open();
                 SqlCommand command = new SqlCommand("DELETE FROM Kullanıcılar WHERE username=@username", _connection);
                 command.Parameters.AddWithValue("@username", listView1.SelectedItems[0].Text);
                 command.ExecuteNonQuery();
                 MessageBox.Show(listView1.SelectedItems[0].Text + "  silindi.");
+                listView1.Items.Clear();
+                _connection.Close();
+                LoadTheData();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            listView1.Items.Clear();
-
-            _connection.Close();
-            LoadTheData();
+            
         }
 
         private void AdminPanel_Load(object sender, EventArgs e)
