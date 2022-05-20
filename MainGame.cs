@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace OOP_LAB1
 {
     public partial class MainGame : Form
     {
+        SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
+
         int[,] ButtonInfo = new int[SettingsSave.Default.Width , SettingsSave.Default.Height];
         Button[,] btn = new Button[SettingsSave.Default.Width , SettingsSave.Default.Height];
         bool flag; string Remember; int score = 0;
@@ -27,6 +30,8 @@ namespace OOP_LAB1
             {
                 ShowUserProfile.Visible = false;
             }
+
+            ShowBestScore.Text = SettingsSave.Default.BestScore.ToString();
 
 
             StartGame(); ;
@@ -69,7 +74,27 @@ namespace OOP_LAB1
             }
             if (CheckIsOver())
             {
-                
+                // Updating the highest score if user gets higher than his last highest score
+                if(score > SettingsSave.Default.BestScore)
+                {
+                    try
+                    {
+                        _connection.Open();
+                        SqlCommand command = new SqlCommand("UPDATE Kullanıcılar SET score=@score WHERE username = @username", _connection);
+                        command.Parameters.AddWithValue("@username", SettingsSave.Default.Username);
+                        command.Parameters.AddWithValue("@score", score);
+                        command.ExecuteNonQuery();
+                        _connection.Close();
+                        SettingsSave.Default.BestScore = score;
+                        ShowBestScore.Text = score.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+
                 RestartGame();
             }
         }
