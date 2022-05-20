@@ -10,16 +10,17 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 
 namespace OOP_LAB1
 {
     public partial class MyProfile : Form
     {
+        SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
         public MyProfile()
         {
             InitializeComponent();
             UsernameField.Text = SettingsSave.Default.Username;
-            PasswordField.Text = SettingsSave.Default.Password;
             NameSurnameField.Text = SettingsSave.Default.NameSurname;
             PhoneNumberField.Text = SettingsSave.Default.PhoneNumber;
             AddressField.Text = SettingsSave.Default.Address;
@@ -30,42 +31,45 @@ namespace OOP_LAB1
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if(Sha256Hash(SettingsSave.Default.Password) != PasswordCheck.Text)
+            if(SettingsSave.Default.Password != Sha256Hash(PasswordCheck.Text))
             {
                 MessageBox.Show("Hatalı Parola!");
                 return;
             }
 
-
-            SettingsSave.Default.Password = Sha256Hash(PasswordField.Text);
-            SettingsSave.Default.NameSurname = NameSurnameField.Text;
-            SettingsSave.Default.PhoneNumber = PhoneNumberField.Text;
-            SettingsSave.Default.Address = AddressField.Text;
-            SettingsSave.Default.City = CityField.Text;
-            SettingsSave.Default.Country = CountryField.Text;
-            SettingsSave.Default.Email = EmailField.Text;
-            SettingsSave.Default.Save();
-
-            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
-
-            var Users = xmlDoc.Descendants("user");
-            foreach (var xUser in Users)
+            try
             {
-                if (xUser.Element("username").Value == UsernameField.Text)
-                {
-                    xUser.Element("password").Value = Sha256Hash(PasswordField.Text);
-                    xUser.Element("name-surname").Value = NameSurnameField.Text;
-                    xUser.Element("phone-number").Value = PhoneNumberField.Text;
-                    xUser.Element("address").Value = AddressField.Text;
-                    xUser.Element("city").Value = CityField.Text;
-                    xUser.Element("country").Value = CountryField.Text;
-                    xUser.Element("email").Value = EmailField.Text;
-                    xUser.Save("../../RegisteredUsers.xml");
+                _connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE Kullanıcılar SET password = @password , name_surname = @name_surname, phone_number = @phone_number , address = @address , city = @city , country = @country , email = @email WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@username", UsernameField.Text);
+                command.Parameters.AddWithValue("@password", Sha256Hash(PasswordField.Text));
+                command.Parameters.AddWithValue("@name_surname", NameSurnameField.Text);
+                command.Parameters.AddWithValue("@phone_number", PhoneNumberField.Text);
+                command.Parameters.AddWithValue("@address", AddressField.Text);
+                command.Parameters.AddWithValue("@city", CityField.Text);
+                command.Parameters.AddWithValue("@country", CountryField.Text);
+                command.Parameters.AddWithValue("@email", EmailField.Text);
+                command.ExecuteNonQuery();
+                _connection.Close();
 
-                    this.Hide();
-                    return;
-                }
-            }         
+
+                SettingsSave.Default.Password = Sha256Hash(PasswordField.Text);
+                SettingsSave.Default.NameSurname = NameSurnameField.Text;
+                SettingsSave.Default.PhoneNumber = PhoneNumberField.Text;
+                SettingsSave.Default.Address = AddressField.Text;
+                SettingsSave.Default.City = CityField.Text;
+                SettingsSave.Default.Country = CountryField.Text;
+                SettingsSave.Default.Email = EmailField.Text;
+                SettingsSave.Default.Save();
+
+                MessageBox.Show("User Informations updated.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
 
         static string Sha256Hash(string Data)
