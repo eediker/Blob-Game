@@ -356,7 +356,7 @@ namespace OOP_LAB1
 
             for (int m = list.Count-1; m > 0; m--)
             {
-                int sleepTime = 100;
+                int sleepTime = 1000;
                 Task.Delay(sleepTime).Wait();
 
                 int i = list[m].row;
