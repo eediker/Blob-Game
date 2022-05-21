@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 
 namespace OOP_LAB1
 {
     public partial class LogIn : Form
     {
+        SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
+
+        bool flag = false;
         public LogIn()
         {
             InitializeComponent();
@@ -52,36 +56,48 @@ namespace OOP_LAB1
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            XDocument xmlDoc = XDocument.Load("../../RegisteredUsers.xml");
+            _connection.Open();
 
-            var Users = xmlDoc.Descendants("user");
-            foreach (var xUser in Users)
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1 AND password= @P2 ", _connection);
+            cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
+            cmd.Parameters.AddWithValue("@P2", Sha256Hash(PasswordField.Text));
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
             {
-                
-                
-                if (xUser.Element("username").Value == UsernameField.Text
-                    &&
-                    xUser.Element("password").Value == Sha256Hash(PasswordField.Text))
+                if (reader["username"].ToString() == UsernameField.Text &&
+                    reader["password"].ToString() == Sha256Hash(PasswordField.Text))
                 {
-                    SettingsSave.Default.Username = xUser.Element("username").Value;
-                    SettingsSave.Default.Password = xUser.Element("password").Value;
-                    SettingsSave.Default.NameSurname = xUser.Element("name-surname").Value;
-                    SettingsSave.Default.PhoneNumber = xUser.Element("phone-number").Value;
-                    SettingsSave.Default.Address = xUser.Element("address").Value;
-                    SettingsSave.Default.City = xUser.Element("city").Value;
-                    SettingsSave.Default.Country = xUser.Element("country").Value;
-                    SettingsSave.Default.Email = xUser.Element("email").Value;
+                    SettingsSave.Default.Username = reader["username"].ToString();
+                    SettingsSave.Default.Password = reader["password"].ToString();
+                    SettingsSave.Default.NameSurname = reader["name_surname"].ToString();
+                    SettingsSave.Default.PhoneNumber = reader["phone_number"].ToString();
+                    SettingsSave.Default.Address = reader["address"].ToString();
+                    SettingsSave.Default.City = reader["city"].ToString();
+                    SettingsSave.Default.Country = reader["country"].ToString();
+                    SettingsSave.Default.Email = reader["email"].ToString();
+                    SettingsSave.Default.BestScore = int.Parse(reader["score"].ToString());
 
                     SettingsSave.Default.Save();
+                    _connection.Close();
                     this.Hide();
                     var MainGame = new MainGame();
                     MainGame.Closed += (s, args) => this.Close();
                     MainGame.ShowDialog();
-                    return;
+                }
+                else
+                {
+                    MessageBox.Show("No user with this information");
+                    reader.Close();
+                    _connection.Close();
                 }
             }
-            MessageBox.Show("There is no user found with this informations");
-            
+            else
+            {
+                MessageBox.Show("No user with this information");
+                reader.Close();
+                _connection.Close();
+            }
         }
 
         private void PasswordField_TextChanged(object sender, EventArgs e)
@@ -103,9 +119,18 @@ namespace OOP_LAB1
             }
         }
 
-        private void ShowPassword_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            PasswordField.PasswordChar = default;
+            if (!flag)
+            {
+                PasswordField.PasswordChar = default;
+                flag = true;
+            }
+            else
+            {
+                PasswordField.PasswordChar = '*';
+                flag = false;
+            }
         }
     }
 }

@@ -32,11 +32,15 @@
             this.ShowUserProfile = new System.Windows.Forms.Button();
             this.AdminPanelButton = new System.Windows.Forms.Button();
             this.AboutScreenButton = new System.Windows.Forms.Button();
+            this.ShowBestScore = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ShowScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(669, 54);
+            this.SettingsButton.Location = new System.Drawing.Point(1257, 41);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(119, 23);
             this.SettingsButton.TabIndex = 0;
@@ -46,7 +50,7 @@
             // 
             // ShowUserProfile
             // 
-            this.ShowUserProfile.Location = new System.Drawing.Point(669, 12);
+            this.ShowUserProfile.Location = new System.Drawing.Point(1257, 12);
             this.ShowUserProfile.Name = "ShowUserProfile";
             this.ShowUserProfile.Size = new System.Drawing.Size(119, 23);
             this.ShowUserProfile.TabIndex = 1;
@@ -56,7 +60,7 @@
             // 
             // AdminPanelButton
             // 
-            this.AdminPanelButton.Location = new System.Drawing.Point(667, 131);
+            this.AdminPanelButton.Location = new System.Drawing.Point(1255, 99);
             this.AdminPanelButton.Name = "AdminPanelButton";
             this.AdminPanelButton.Size = new System.Drawing.Size(121, 23);
             this.AdminPanelButton.TabIndex = 2;
@@ -66,7 +70,7 @@
             // 
             // AboutScreenButton
             // 
-            this.AboutScreenButton.Location = new System.Drawing.Point(669, 92);
+            this.AboutScreenButton.Location = new System.Drawing.Point(1257, 70);
             this.AboutScreenButton.Name = "AboutScreenButton";
             this.AboutScreenButton.Size = new System.Drawing.Size(119, 23);
             this.AboutScreenButton.TabIndex = 3;
@@ -74,11 +78,55 @@
             this.AboutScreenButton.UseVisualStyleBackColor = true;
             this.AboutScreenButton.Click += new System.EventHandler(this.AboutScreenButton_Click);
             // 
+            // ShowBestScore
+            // 
+            this.ShowBestScore.AutoSize = true;
+            this.ShowBestScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ShowBestScore.Location = new System.Drawing.Point(1267, 191);
+            this.ShowBestScore.Name = "ShowBestScore";
+            this.ShowBestScore.Size = new System.Drawing.Size(109, 46);
+            this.ShowBestScore.TabIndex = 4;
+            this.ShowBestScore.Text = "none";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(1257, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 26);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Best Score";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(1270, 257);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 26);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Score";
+            // 
+            // ShowScore
+            // 
+            this.ShowScore.AutoSize = true;
+            this.ShowScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ShowScore.Location = new System.Drawing.Point(1267, 293);
+            this.ShowScore.Name = "ShowScore";
+            this.ShowScore.Size = new System.Drawing.Size(109, 46);
+            this.ShowScore.TabIndex = 7;
+            this.ShowScore.Text = "none";
+            // 
             // MainGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1390, 650);
+            this.Controls.Add(this.ShowScore);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ShowBestScore);
             this.Controls.Add(this.AboutScreenButton);
             this.Controls.Add(this.AdminPanelButton);
             this.Controls.Add(this.ShowUserProfile);
@@ -87,6 +135,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -96,5 +145,9 @@
         private System.Windows.Forms.Button ShowUserProfile;
         private System.Windows.Forms.Button AdminPanelButton;
         private System.Windows.Forms.Button AboutScreenButton;
+        private System.Windows.Forms.Label ShowBestScore;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ShowScore;
     }
 }

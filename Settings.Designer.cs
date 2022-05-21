@@ -44,14 +44,14 @@
             this.Square = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Colors = new System.Windows.Forms.Panel();
             this.Yellow = new System.Windows.Forms.CheckBox();
             this.Red = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Blue = new System.Windows.Forms.CheckBox();
             this.DifficultyLevel.SuspendLayout();
             this.Shapes.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.Colors.SuspendLayout();
             this.SuspendLayout();
             // 
             // DifficultyLevel
@@ -229,17 +229,17 @@
             this.Save.UseVisualStyleBackColor = false;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // panel1
+            // Colors
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel1.Controls.Add(this.Yellow);
-            this.panel1.Controls.Add(this.Red);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.Blue);
-            this.panel1.Location = new System.Drawing.Point(562, 117);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 186);
-            this.panel1.TabIndex = 4;
+            this.Colors.BackColor = System.Drawing.SystemColors.GrayText;
+            this.Colors.Controls.Add(this.Yellow);
+            this.Colors.Controls.Add(this.Red);
+            this.Colors.Controls.Add(this.label5);
+            this.Colors.Controls.Add(this.Blue);
+            this.Colors.Location = new System.Drawing.Point(562, 117);
+            this.Colors.Name = "Colors";
+            this.Colors.Size = new System.Drawing.Size(200, 186);
+            this.Colors.TabIndex = 4;
             // 
             // Yellow
             // 
@@ -286,7 +286,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Colors);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Shapes);
             this.Controls.Add(this.DifficultyLevel);
@@ -296,8 +296,8 @@
             this.DifficultyLevel.PerformLayout();
             this.Shapes.ResumeLayout(false);
             this.Shapes.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Colors.ResumeLayout(false);
+            this.Colors.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -320,7 +320,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Height;
         private System.Windows.Forms.TextBox Width;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Colors;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox Blue;
         private System.Windows.Forms.CheckBox Yellow;

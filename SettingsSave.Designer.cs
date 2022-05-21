@@ -37,7 +37,7 @@ namespace OOP_LAB1 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool Square {
             get {
                 return ((bool)(this["Square"]));
@@ -73,7 +73,7 @@ namespace OOP_LAB1 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool Red {
             get {
                 return ((bool)(this["Red"]));
@@ -224,6 +224,18 @@ namespace OOP_LAB1 {
             }
             set {
                 this["Email"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int BestScore {
+            get {
+                return ((int)(this["BestScore"]));
+            }
+            set {
+                this["BestScore"] = value;
             }
         }
     }

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">Easy</Value>
     </Setting>
     <Setting Name="Square" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Triangle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Red" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Blue" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -52,6 +52,9 @@
     </Setting>
     <Setting Name="Email" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BestScore" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

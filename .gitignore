@@ -8,3 +8,6 @@
 *.exe
 .vs/OOP-LAB/v17/.suo
 *.cache
+bin/Debug/OOP-LAB1.exe
+*.pdb
+*.exe

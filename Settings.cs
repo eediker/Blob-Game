@@ -42,7 +42,7 @@ namespace OOP_LAB1
 
             Red.Checked = SettingsSave.Default.Red;
             Blue.Checked = SettingsSave.Default.Blue;
-            Blue.Checked = SettingsSave.Default.Blue;
+            Yellow.Checked = SettingsSave.Default.Yellow;
 
         }
 
@@ -57,6 +57,8 @@ namespace OOP_LAB1
             Height.Visible = true;
             label3.Visible = true;
             label4.Visible = true;
+            Colors.Visible = true;
+            Shapes.Visible = true;
         }
 
         private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace OOP_LAB1
                     SettingsSave.Default.Width = int.Parse(Width.Text);
                     SettingsSave.Default.Height = int.Parse(Height.Text);
                 }
-                catch(Exception ex)
+                catch
                 {
                     MessageBox.Show("Lütfen bir integer değer giriniz!");
                     return;
@@ -106,10 +108,29 @@ namespace OOP_LAB1
             SettingsSave.Default.Red = Red.Checked;
             SettingsSave.Default.Blue = Blue.Checked;
             SettingsSave.Default.Yellow = Yellow.Checked;
-            SettingsSave.Default.Save();
 
+
+            if(SettingsSave.Default.Diffuculty == "Custom")
+            {
+                bool colorFlag = false;
+                if (SettingsSave.Default.Yellow == true) colorFlag = true;
+                if (SettingsSave.Default.Red == true) colorFlag = true;
+                if (SettingsSave.Default.Blue == true) colorFlag = true;
+
+                bool shapeFlag = false;
+                if (SettingsSave.Default.Round == true) shapeFlag = true;
+                if (SettingsSave.Default.Triangle == true) shapeFlag = true;
+                if (SettingsSave.Default.Square == true) shapeFlag = true;
+
+                if (!colorFlag || !shapeFlag)
+                {
+                    MessageBox.Show("At least 1 shape and 1 color had to be chosen when in custom level");
+                    return;
+                }
+            }
+
+            SettingsSave.Default.Save();            
             this.Hide();
-            
         }
 
         private void ReturnToLastForm_Click(object sender, EventArgs e)
@@ -123,6 +144,8 @@ namespace OOP_LAB1
             Height.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
+            Shapes.Visible = false;
+            Colors.Visible = false;
         }
 
         private void Normal_CheckedChanged(object sender, EventArgs e)
@@ -131,6 +154,8 @@ namespace OOP_LAB1
             Height.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
+            Shapes.Visible = false;
+            Colors.Visible = false;
         }
 
         private void Hard_CheckedChanged(object sender, EventArgs e)
@@ -139,6 +164,8 @@ namespace OOP_LAB1
              Height.Visible = false;
              label3.Visible = false;
              label4.Visible = false;
+             Shapes.Visible = false;
+             Colors.Visible = false;
         }
 
         private void label5_Click(object sender, EventArgs e)
