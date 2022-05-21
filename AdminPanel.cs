@@ -175,13 +175,14 @@ namespace OOP_LAB1
 
             if (reader.Read())
             {
-                    UpdateUsernameField.Text = reader["username"].ToString();
-                    UpdateNameField.Text = reader["name_surname"].ToString();
-                    UpdatePhoneField.Text = reader["phone_number"].ToString();
-                    UpdateAddressField.Text = reader["address"].ToString();
-                    UpdateCityField.Text = reader["city"].ToString();
-                    UpdateCountryField.Text = reader["country"].ToString();
-                    UpdateEmailField.Text = reader["email"].ToString();
+                UpdateUsernameField.Text = reader["username"].ToString();
+                UpdatePasswordField.Text = "";    
+                UpdateNameField.Text = reader["name_surname"].ToString();
+                UpdatePhoneField.Text = reader["phone_number"].ToString();
+                UpdateAddressField.Text = reader["address"].ToString();
+                UpdateCityField.Text = reader["city"].ToString();
+                UpdateCountryField.Text = reader["country"].ToString();
+                UpdateEmailField.Text = reader["email"].ToString();
             }
             else
             {
