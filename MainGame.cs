@@ -119,22 +119,72 @@ namespace OOP_LAB1
 
             if (SettingsSave.Default.Diffuculty != remember)
             {
-                Application.Restart();
+                this.Hide();
+                var MainGame = new MainGame();
+                MainGame.Closed += (s, args) => this.Close();
+                MainGame.ShowDialog();
+                return;
             }
 
             if (remember2 != SettingsSave.Default.Width && remember3 != SettingsSave.Default.Height)
             {
-                Application.Restart();
+                this.Hide();
+                var MainGame = new MainGame();
+                MainGame.Closed += (s, args) => this.Close();
+                MainGame.ShowDialog();
+                return;
             }
 
             if (SettingsSave.Default.Diffuculty == "Custom")
             {
-                if (rememberRound != SettingsSave.Default.Round) Application.Restart();
-                if (rememberSquare != SettingsSave.Default.Square) Application.Restart();
-                if (rememberTriangle != SettingsSave.Default.Triangle) Application.Restart();
-                if (rememberRed != SettingsSave.Default.Red) Application.Restart();
-                if (rememberYellow != SettingsSave.Default.Yellow) Application.Restart();
-                if (rememberBlue != SettingsSave.Default.Blue) Application.Restart();
+                if (rememberRound != SettingsSave.Default.Round)
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
+                if (rememberSquare != SettingsSave.Default.Square)
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
+                if (rememberTriangle != SettingsSave.Default.Triangle)
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
+                if (rememberRed != SettingsSave.Default.Red)
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
+                if (rememberYellow != SettingsSave.Default.Yellow)
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
+                if (rememberBlue != SettingsSave.Default.Blue)
+                {
+                    this.Hide();
+                    var MainGame = new MainGame();
+                    MainGame.Closed += (s, args) => this.Close();
+                    MainGame.ShowDialog();
+                    return;
+                }
             }
         }
 
