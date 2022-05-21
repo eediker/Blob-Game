@@ -15,8 +15,8 @@ namespace OOP_LAB1
     {
         SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
 
-        int[,] ButtonInfo = new int[SettingsSave.Default.Width , SettingsSave.Default.Height];
-        Button[,] btn = new Button[SettingsSave.Default.Width , SettingsSave.Default.Height];
+        int[,] ButtonInfo = new int[SettingsSave.Default.Height , SettingsSave.Default.Width];
+        Button[,] btn = new Button[SettingsSave.Default.Height , SettingsSave.Default.Width];
         bool flag; string Remember; int score = 0;
         public MainGame()
         {
