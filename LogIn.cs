@@ -17,6 +17,7 @@ namespace OOP_LAB1
     {
         SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
 
+        bool flag = false;
         public LogIn()
         {
             InitializeComponent();
@@ -118,9 +119,18 @@ namespace OOP_LAB1
             }
         }
 
-        private void ShowPassword_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            PasswordField.PasswordChar = default;
+            if (!flag)
+            {
+                PasswordField.PasswordChar = default;
+                flag = true;
+            }
+            else
+            {
+                PasswordField.PasswordChar = '*';
+                flag = false;
+            }
         }
     }
 }
