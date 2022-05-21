@@ -176,7 +176,7 @@ namespace OOP_LAB1
             if (reader.Read())
             {
                 UpdateUsernameField.Text = reader["username"].ToString();
-                UpdatePasswordField.Text = "";    
+                UpdatePasswordField.Text = "";
                 UpdateNameField.Text = reader["name_surname"].ToString();
                 UpdatePhoneField.Text = reader["phone_number"].ToString();
                 UpdateAddressField.Text = reader["address"].ToString();
