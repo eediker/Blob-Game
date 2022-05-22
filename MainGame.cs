@@ -13,7 +13,7 @@ namespace OOP_LAB1
 {
     public partial class MainGame : Form
     {
-        SqlConnection _connection = new SqlConnection("Data Source=LENOVO-PC\\MSSQLSRVR;Initial Catalog=Kullanıcılar;Integrated Security=True");
+        SqlConnection _connection = new SqlConnection("workstation id=OOP-LAB.mssql.somee.com;packet size=4096;user id=eediker_SQLLogin_1;pwd=jkd89i8yei;data source=OOP-LAB.mssql.somee.com;persist security info=False;initial catalog=OOP-LAB");
 
         int[,] ButtonInfo = new int[SettingsSave.Default.Height , SettingsSave.Default.Width];
         Button[,] btn = new Button[SettingsSave.Default.Height , SettingsSave.Default.Width];

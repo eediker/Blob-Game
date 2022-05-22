@@ -87,7 +87,7 @@
             // 
             this.LogInButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LogInButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogInButton.Location = new System.Drawing.Point(310, 272);
+            this.LogInButton.Location = new System.Drawing.Point(324, 272);
             this.LogInButton.Name = "LogInButton";
             this.LogInButton.Size = new System.Drawing.Size(147, 23);
             this.LogInButton.TabIndex = 4;
