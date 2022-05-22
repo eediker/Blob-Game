@@ -111,6 +111,13 @@ namespace OOP_LAB1
         {
             try
             {
+                if (listView1.SelectedItems[0].Text == "user" || listView1.SelectedItems[0].Text == "admin")
+                {
+                    MessageBox.Show("This user cannot be modified!");
+                    _connection.Close();
+                    return;
+                }
+
                 if (MessageBox.Show("Are you sure want to delete " + listView1.SelectedItems[0].Text,"Delete user",MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     _connection.Open();
