@@ -553,7 +553,22 @@ namespace OOP_LAB1
             else if (SettingsSave.Default.Diffuculty == "Custom") score += 2;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var LogIn = new LogIn();
+            LogIn.Show();
+        }
 
+        private void MainGame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var window = MessageBox.Show(
+                "Close the window?",
+                "Are you sure?",
+                MessageBoxButtons.YesNo);
+
+            e.Cancel = (window == DialogResult.No);
+        }
     }
 }
  
