@@ -81,9 +81,9 @@ namespace OOP_LAB1
                     SettingsSave.Default.Save();
                     _connection.Close();
                     this.Hide();
-                    var MainGame = new MainGame();
-                    MainGame.Closed += (s, args) => this.Close();
-                    MainGame.ShowDialog();
+                    var SelectGameType = new SelectGameType();
+                    SelectGameType.Closed += (s, args) => this.Close();
+                    SelectGameType.ShowDialog();
                 }
                 else
                 {
