@@ -119,6 +119,9 @@
     <EmbeddedResource Include="MainGame.resx">
       <DependentUpon>MainGame.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MultiplayerGame.resx">
+      <DependentUpon>MultiplayerGame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyProfile.resx">
       <DependentUpon>MyProfile.cs</DependentUpon>
     </EmbeddedResource>
