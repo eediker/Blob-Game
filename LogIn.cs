@@ -24,21 +24,6 @@ namespace OOP_LAB1
             UsernameField.Text = SettingsSave.Default.Username;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         static string Sha256Hash(string Data)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -98,11 +83,6 @@ namespace OOP_LAB1
                 reader.Close();
                 _connection.Close();
             }
-        }
-
-        private void PasswordField_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)
