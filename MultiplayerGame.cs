@@ -299,7 +299,7 @@ namespace OOP_LAB1
             public int col;
             public int dist;
             public QItem prev;
-            public QItem(int x, int y, int w)
+            public QItem(int x, int y)
             {
                 row = x;
                 col = y;
@@ -322,7 +322,7 @@ namespace OOP_LAB1
             }
 
 
-            QItem source = new QItem(0, 0, 0);
+            QItem source = new QItem(0, 0);
 
             // To keep track of visited QItems. Marking
             // blocked cells as visited.
@@ -370,7 +370,7 @@ namespace OOP_LAB1
                 if (p.row - 1 >= 0 &&
                     visited[p.row - 1, p.col] == false)
                 {
-                    QItem q = new QItem(p.row - 1, p.col, p.dist + 1);
+                    QItem q = new QItem(p.row - 1, p.col);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row - 1, p.col] = true;
@@ -380,7 +380,7 @@ namespace OOP_LAB1
                 if (p.row + 1 < 9 &&
                     visited[p.row + 1, p.col] == false)
                 {
-                    QItem q = new QItem(p.row + 1, p.col, p.dist + 1);
+                    QItem q = new QItem(p.row + 1, p.col);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row + 1, p.col] = true;
@@ -390,7 +390,7 @@ namespace OOP_LAB1
                 if (p.col - 1 >= 0 &&
                     visited[p.row, p.col - 1] == false)
                 {
-                    QItem q = new QItem(p.row, p.col - 1, p.dist + 1);
+                    QItem q = new QItem(p.row, p.col - 1);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row, p.col - 1] = true;
@@ -400,7 +400,7 @@ namespace OOP_LAB1
                 if (p.col + 1 < 9 &&
                     visited[p.row, p.col + 1] == false)
                 {
-                    QItem q = new QItem(p.row, p.col + 1, p.dist + 1);
+                    QItem q = new QItem(p.row, p.col + 1);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row, p.col + 1] = true;
