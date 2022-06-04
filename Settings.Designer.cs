@@ -269,7 +269,6 @@
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 1;
             this.label5.Text = "Colors";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Blue
             // 

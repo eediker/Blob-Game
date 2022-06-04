@@ -68,8 +68,6 @@ namespace OOP_LAB1
                 MessageBox.Show("Succesfully registered");
                 this.Hide();
             }
-
-
         }
     }
 }

@@ -26,13 +26,11 @@ namespace OOP_LAB1
         bool player1 = false;
         bool player2 = false;
 
-
         public MultiplayerGame(bool isHost, IPAddress ip = null,int port = 47132)
         {
             InitializeComponent();
 
             _connection.Open();
-
             SqlCommand command1 = new SqlCommand("SELECT * FROM Multiplayer Where isServer = 1 ", _connection);
             SqlDataReader reader1 = command1.ExecuteReader();
             if (reader1.Read())
@@ -643,6 +641,5 @@ namespace OOP_LAB1
             
             _connection.Close();
         }
-
     }
 }

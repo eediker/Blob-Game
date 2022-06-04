@@ -74,7 +74,6 @@ namespace OOP_LAB1
             if (!multiplayerGame.IsDisposed)
                 multiplayerGame.ShowDialog();
             Visible = true;
-
         }
     }
 }
