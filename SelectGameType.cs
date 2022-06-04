@@ -39,7 +39,7 @@ namespace OOP_LAB1
             }
             Message.Text += "\n\n\n*****Connection Details are given below*****";
             Message.Text += "\n\nIP Adress   : " + Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
-            Message.Text += "\nPort Number : " + "47132";
+            Message.Text += "\nPort Number : " + "80";
             Message.Visible = true;
             
             int sleepTime = 100;
@@ -52,7 +52,7 @@ namespace OOP_LAB1
             command.ExecuteNonQuery();
             _connection.Close();
 
-            MultiplayerGame multiplayerGame = new MultiplayerGame(true, Dns.GetHostEntry(Dns.GetHostName()).AddressList[1],47132);
+            MultiplayerGame multiplayerGame = new MultiplayerGame(true, Dns.GetHostEntry(Dns.GetHostName()).AddressList[1],80);
             Visible = false;
             this.Hide();
             if(!multiplayerGame.IsDisposed)
@@ -68,12 +68,13 @@ namespace OOP_LAB1
             command.ExecuteNonQuery();
             _connection.Close();
 
-            MultiplayerGame multiplayerGame = new MultiplayerGame(false, System.Net.IPAddress.Parse(IPAddress.Text),int.Parse(PortNumber.Text));
+            MultiplayerGame multiplayerGame = new MultiplayerGame(false, System.Net.IPAddress.Parse(IPAddress.Text), int.Parse(PortNumber.Text));
             Visible = false;
             this.Hide();
             if (!multiplayerGame.IsDisposed)
                 multiplayerGame.ShowDialog();
             Visible = true;
+
         }
     }
 }
