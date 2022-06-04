@@ -152,12 +152,12 @@ namespace OOP_LAB1
                 command.ExecuteNonQuery();
                 _connection.Close();
                 MessageBox.Show("User Informations updated.");
+                LoadTheData();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void FindUser_Click(object sender, EventArgs e)
