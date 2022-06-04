@@ -21,9 +21,8 @@ namespace OOP_LAB1
         Button[,] btn = new Button[9, 9];
         bool flag; string Remember;
         private Socket socket;
+        private Socket ClientSocket;
         BackgroundWorker MessageReceiver = new BackgroundWorker();
-        private TcpListener server = null;
-        private TcpClient client;
         bool player1 = false;
         bool player2 = false;
 
@@ -54,13 +53,22 @@ namespace OOP_LAB1
 
             MessageReceiver.DoWork += MessageReceiver_DoWork;
             CheckForIllegalCrossThreadCalls = false;
+
             if (isHost)
             {
                 WhoseTurn.Text = "Your Turn !";
                 StartGame();
-                server = new TcpListener(ip, 47132);
-                server.Start();
-                socket = server.AcceptSocket();
+
+                IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
+                IPAddress ipAddr = ipHost.AddressList[1];
+                IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
+
+                ClientSocket = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+                ClientSocket.Bind(localEndPoint);
+                ClientSocket.Listen(1);
+                socket = ClientSocket.Accept();
+
                 player1 = true;
 
                 // sending the rand shapes to client for the first time
@@ -83,14 +91,20 @@ namespace OOP_LAB1
                 {
                     StartGame();
                     player2 = true;
-                    client = new TcpClient(ip.ToString(),47132);
-                    socket = client.Client;
+
+                    IPEndPoint localEndPoint = new IPEndPoint(ip, port);
+
+                    socket = new Socket(ip.AddressFamily,SocketType.Stream,ProtocolType.Tcp);
+                    socket.Connect(localEndPoint);
+
                     ReceiveRandShapes();
+                    
                     MessageReceiver.RunWorkerAsync();
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    Close();
                 }
             }
         }
@@ -100,7 +114,7 @@ namespace OOP_LAB1
             if (CheckIsOver())
             {
                 SeekForWinner();
-                RestartGame();
+                Close();
                 return;
             }
 
@@ -130,14 +144,14 @@ namespace OOP_LAB1
             if (CheckIsOver())
             {
                 SeekForWinner();
-                RestartGame();
+                Close();
                 return;
             }
         }
 
         private void ReceiveMove()
         {
-            // 0,1,2,3 move info
+            // 0,1    2,3 move info
             byte[] buffer = new byte[4];
             socket.Receive(buffer);
             
@@ -266,23 +280,6 @@ namespace OOP_LAB1
                     Controls.Add(btn[i, j]);
                 }
             }
-        }
-
-        void RestartGame()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    ButtonInfo[i, j] = 0;
-                    btn[i, j].Image = default;
-                }
-            }
-            _connection.Open();
-            SqlCommand command = new SqlCommand("UPDATE Multiplayer SET score = 0", _connection);
-            command.ExecuteNonQuery();
-            _connection.Close();
-
         }
 
         class Shape
@@ -541,7 +538,7 @@ namespace OOP_LAB1
             List<Shape> list = new List<Shape>();
 
             List<int> list2 = new List<int>();
-            list2.Add(2); list2.Add(5);list2.Add(8);
+            list2.Add(2); list2.Add(5);list2.Add(8); list2.Add(1); list2.Add(4); list2.Add(7); list2.Add(3); list2.Add(6); list2.Add(9);
 
             int x = 3;
             while (x > 0)
@@ -612,8 +609,9 @@ namespace OOP_LAB1
         {
             MessageReceiver.WorkerSupportsCancellation = true;
             MessageReceiver.CancelAsync();
-            if (server != null)
-                server.Stop();
+
+            socket.Shutdown(SocketShutdown.Both);
+            socket.Close();
 
             _connection.Open();
             SqlCommand command = new SqlCommand("UPDATE Multiplayer SET score= 0", _connection);
@@ -629,6 +627,7 @@ namespace OOP_LAB1
             SqlDataReader reader1 = command1.ExecuteReader();
             if (reader1.Read())
             {
+                Player1.Text = reader1["username"].ToString();
                 Player1Score.Text = reader1["score"].ToString();
             }
             reader1.Close();
@@ -637,6 +636,7 @@ namespace OOP_LAB1
             SqlDataReader reader2 = command2.ExecuteReader();
             if (reader2.Read())
             {
+                Player2.Text = reader2["username"].ToString();
                 Player2Score.Text = reader2["score"].ToString();
             }
             reader2.Close();
