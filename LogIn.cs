@@ -41,17 +41,16 @@ namespace OOP_LAB1
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            _connection.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1 AND password= @P2 ", _connection);
-            cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
-            cmd.Parameters.AddWithValue("@P2", Sha256Hash(PasswordField.Text));
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            try
             {
-                if (reader["username"].ToString() == UsernameField.Text &&
-                    reader["password"].ToString() == Sha256Hash(PasswordField.Text))
+                _connection.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1 AND password= @P2 ", _connection);
+                cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
+                cmd.Parameters.AddWithValue("@P2", Sha256Hash(PasswordField.Text));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
                     SettingsSave.Default.Username = reader["username"].ToString();
                     SettingsSave.Default.Password = reader["password"].ToString();
@@ -77,11 +76,9 @@ namespace OOP_LAB1
                     _connection.Close();
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("No user with this information");
-                reader.Close();
-                _connection.Close();
+                MessageBox.Show(ex.Message);
             }
         }
 
