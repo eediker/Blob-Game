@@ -280,7 +280,6 @@ namespace OOP_LAB1
         {
             public int row;
             public int col;
-            public int dist;
             public Cell prev;
             public Cell(int x, int y)
             {
