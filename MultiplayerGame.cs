@@ -137,7 +137,7 @@ namespace OOP_LAB1
             socket.Receive(buffer);
             
             // Take it to the minDistance function after that
-            List<QItem> list = new List<QItem>();
+            List<Cell> list = new List<Cell>();
 
             if (minDistance((int)buffer[0], (int)buffer[1], (int)buffer[2], (int)buffer[3], ref list))
             {
@@ -162,7 +162,7 @@ namespace OOP_LAB1
                 int x = int.Parse(Remember.Substring(0, Remember.IndexOf(',')));
                 int y = int.Parse(Remember.Substring(Remember.IndexOf(',') + 1));
 
-                List<QItem> list = new List<QItem>();
+                List<Cell> list = new List<Cell>();
 
                 if (minDistance(x, y, i, j, ref list))
                 {
@@ -276,13 +276,13 @@ namespace OOP_LAB1
             }
         };
 
-        class QItem
+        class Cell
         {
             public int row;
             public int col;
             public int dist;
-            public QItem prev;
-            public QItem(int x, int y)
+            public Cell prev;
+            public Cell(int x, int y)
             {
                 row = x;
                 col = y;
@@ -290,7 +290,7 @@ namespace OOP_LAB1
             }
         };
 
-        bool minDistance(int srcX, int srcY, int destX, int destY, ref List<QItem> arr)
+        bool minDistance(int srcX, int srcY, int destX, int destY, ref List<Cell> arr)
         {
             char[,] grid = new char[9, 9];
             for (int i = 0; i < 9; i++)
@@ -304,9 +304,7 @@ namespace OOP_LAB1
                 }
             }
 
-
-            QItem source = new QItem(0, 0);
-
+            Cell source = new Cell(0, 0);
             // To keep track of visited QItems. Marking
             // blocked cells as visited.
             bool[,] visited = new bool[9, 9];
@@ -329,12 +327,12 @@ namespace OOP_LAB1
             }
 
             // applying BFS on matrix cells starting from source
-            List<QItem> list = new List<QItem>();
+            List<Cell> list = new List<Cell>();
             list.Add(source);
             visited[source.row, source.col] = true;
             while (list.Any())
             {
-                QItem p = list[0];
+                Cell p = list[0];
                 list.RemoveAt(0);
 
                 // Destination found;
@@ -353,7 +351,7 @@ namespace OOP_LAB1
                 if (p.row - 1 >= 0 &&
                     visited[p.row - 1, p.col] == false)
                 {
-                    QItem q = new QItem(p.row - 1, p.col);
+                    Cell q = new Cell(p.row - 1, p.col);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row - 1, p.col] = true;
@@ -363,7 +361,7 @@ namespace OOP_LAB1
                 if (p.row + 1 < 9 &&
                     visited[p.row + 1, p.col] == false)
                 {
-                    QItem q = new QItem(p.row + 1, p.col);
+                    Cell q = new Cell(p.row + 1, p.col);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row + 1, p.col] = true;
@@ -373,7 +371,7 @@ namespace OOP_LAB1
                 if (p.col - 1 >= 0 &&
                     visited[p.row, p.col - 1] == false)
                 {
-                    QItem q = new QItem(p.row, p.col - 1);
+                    Cell q = new Cell(p.row, p.col - 1);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row, p.col - 1] = true;
@@ -383,7 +381,7 @@ namespace OOP_LAB1
                 if (p.col + 1 < 9 &&
                     visited[p.row, p.col + 1] == false)
                 {
-                    QItem q = new QItem(p.row, p.col + 1);
+                    Cell q = new Cell(p.row, p.col + 1);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row, p.col + 1] = true;
@@ -392,7 +390,7 @@ namespace OOP_LAB1
             return false;
         }
 
-        void MakeaMove(List<QItem> list)
+        void MakeaMove(List<Cell> list)
         {
 
             for (int m = list.Count - 1; m > 0; m--)
