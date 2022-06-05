@@ -46,9 +46,8 @@ namespace OOP_LAB1
             Task.Delay(sleepTime).Wait();
             
             _connection.Open();
-            SqlCommand command = new SqlCommand("UPDATE Multiplayer SET username=@username WHERE isServer = @isServer", _connection);
+            SqlCommand command = new SqlCommand("UPDATE Multiplayer SET username=@username WHERE isServer = 1", _connection);
             command.Parameters.AddWithValue("@username", SettingsSave.Default.Username);
-            command.Parameters.AddWithValue("@isServer", 1);
             command.ExecuteNonQuery();
             _connection.Close();
 
@@ -57,14 +56,14 @@ namespace OOP_LAB1
             this.Hide();
             if(!multiplayerGame.IsDisposed)
                 multiplayerGame.ShowDialog();
+            Visible = true;
         }
 
         private void ConnectToGame_Click(object sender, EventArgs e)
         {
             _connection.Open();
-            SqlCommand command = new SqlCommand("UPDATE Multiplayer SET username=@username WHERE isServer = @isServer", _connection);
+            SqlCommand command = new SqlCommand("UPDATE Multiplayer SET username=@username WHERE isServer = 0", _connection);
             command.Parameters.AddWithValue("@username", SettingsSave.Default.Username);
-            command.Parameters.AddWithValue("@isServer", 0);
             command.ExecuteNonQuery();
             _connection.Close();
 

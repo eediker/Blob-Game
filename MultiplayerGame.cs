@@ -30,24 +30,7 @@ namespace OOP_LAB1
         {
             InitializeComponent();
 
-            _connection.Open();
-            SqlCommand command1 = new SqlCommand("SELECT * FROM Multiplayer Where isServer = 1 ", _connection);
-            SqlDataReader reader1 = command1.ExecuteReader();
-            if (reader1.Read())
-            {
-                Player1.Text = reader1["username"].ToString();
-            }
-            reader1.Close();
-
-            SqlCommand command2 = new SqlCommand("SELECT * FROM Multiplayer Where isServer = 0 ", _connection);
-            SqlDataReader reader2 = command2.ExecuteReader();
-            if (reader2.Read())
-            {
-                Player2.Text = reader2["username"].ToString();
-            }
-            reader2.Close();
-
-            _connection.Close();
+            UpdateUsernameLabels();
 
             MessageReceiver.DoWork += MessageReceiver_DoWork;
             CheckForIllegalCrossThreadCalls = false;
@@ -639,6 +622,28 @@ namespace OOP_LAB1
             }
             reader2.Close();
             
+            _connection.Close();
+        }
+
+        private void UpdateUsernameLabels()
+        {
+            _connection.Open();
+            SqlCommand command1 = new SqlCommand("SELECT * FROM Multiplayer Where isServer = 1 ", _connection);
+            SqlDataReader reader1 = command1.ExecuteReader();
+            if (reader1.Read())
+            {
+                Player1.Text = reader1["username"].ToString();
+            }
+            reader1.Close();
+
+            SqlCommand command2 = new SqlCommand("SELECT * FROM Multiplayer Where isServer = 0 ", _connection);
+            SqlDataReader reader2 = command2.ExecuteReader();
+            if (reader2.Read())
+            {
+                Player2.Text = reader2["username"].ToString();
+            }
+            reader2.Close();
+
             _connection.Close();
         }
     }
