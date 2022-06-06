@@ -522,7 +522,7 @@ namespace OOP_LAB1
             while (x > 0)
             {
                 Random rd = new Random();
-                int randShape = list2[rd.Next(0,3)];
+                int randShape = list2[rd.Next(0,9)];
                 int Width = rd.Next(0, 9);
                 int Height = rd.Next(0, 9);
                 if (ButtonInfo[Height, Width] == 0)
