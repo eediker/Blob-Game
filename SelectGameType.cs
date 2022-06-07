@@ -57,6 +57,13 @@ namespace OOP_LAB1
             if(!multiplayerGame.IsDisposed)
                 multiplayerGame.ShowDialog();
             Visible = true;
+
+            foreach (Control component in this.Controls)
+            {
+                component.Visible = true;
+            }
+            Message.Visible = false;
+
         }
 
         private void ConnectToGame_Click(object sender, EventArgs e)
