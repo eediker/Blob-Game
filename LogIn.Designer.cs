@@ -48,7 +48,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -61,7 +60,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Password : ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // UsernameField
             // 
@@ -70,7 +68,6 @@
             this.UsernameField.Name = "UsernameField";
             this.UsernameField.Size = new System.Drawing.Size(147, 20);
             this.UsernameField.TabIndex = 2;
-            this.UsernameField.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.UsernameField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsernameField_KeyPress);
             // 
             // PasswordField
@@ -81,7 +78,6 @@
             this.PasswordField.PasswordChar = '*';
             this.PasswordField.Size = new System.Drawing.Size(147, 20);
             this.PasswordField.TabIndex = 3;
-            this.PasswordField.TextChanged += new System.EventHandler(this.PasswordField_TextChanged);
             // 
             // LogInButton
             // 

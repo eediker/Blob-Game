@@ -41,18 +41,14 @@ namespace OOP_LAB1
         public void LoadTheData()
         {
             _connection.Open();
-            
-
             SqlCommand command = new SqlCommand("SELECT * FROM Kullanıcılar",_connection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
 
             DataTable tablo = new DataTable();
             adapter.Fill(tablo);
 
-
             // Loading the data for datagriedview component
             UserLists.DataSource = tablo;
-
 
             listView1.Items.Clear();
             // Loading the data for listview component
@@ -67,9 +63,7 @@ namespace OOP_LAB1
                 listView1.Items[i].SubItems.Add(tablo.Rows[i]["country"].ToString());
                 listView1.Items[i].SubItems.Add(tablo.Rows[i]["email"].ToString());
                 listView1.Items[i].SubItems.Add(tablo.Rows[i]["score"].ToString());
-
             }
-
             _connection.Close();
         }
 
@@ -158,12 +152,12 @@ namespace OOP_LAB1
                 command.ExecuteNonQuery();
                 _connection.Close();
                 MessageBox.Show("User Informations updated.");
+                LoadTheData();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void FindUser_Click(object sender, EventArgs e)
@@ -197,7 +191,6 @@ namespace OOP_LAB1
             }
             reader.Close();
             _connection.Close();
-
         }
     }
 }

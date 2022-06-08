@@ -24,21 +24,6 @@ namespace OOP_LAB1
             UsernameField.Text = SettingsSave.Default.Username;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         static string Sha256Hash(string Data)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -56,17 +41,16 @@ namespace OOP_LAB1
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            _connection.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1 AND password= @P2 ", _connection);
-            cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
-            cmd.Parameters.AddWithValue("@P2", Sha256Hash(PasswordField.Text));
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            try
             {
-                if (reader["username"].ToString() == UsernameField.Text &&
-                    reader["password"].ToString() == Sha256Hash(PasswordField.Text))
+                _connection.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Kullanıcılar Where username =@P1 AND password= @P2 ", _connection);
+                cmd.Parameters.AddWithValue("@P1", UsernameField.Text);
+                cmd.Parameters.AddWithValue("@P2", Sha256Hash(PasswordField.Text));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
                     SettingsSave.Default.Username = reader["username"].ToString();
                     SettingsSave.Default.Password = reader["password"].ToString();
@@ -81,9 +65,9 @@ namespace OOP_LAB1
                     SettingsSave.Default.Save();
                     _connection.Close();
                     this.Hide();
-                    var MainGame = new MainGame();
-                    MainGame.Closed += (s, args) => this.Close();
-                    MainGame.ShowDialog();
+                    var SelectGameType = new SelectGameType();
+                    SelectGameType.Closed += (s, args) => this.Close();
+                    SelectGameType.ShowDialog();
                 }
                 else
                 {
@@ -92,17 +76,10 @@ namespace OOP_LAB1
                     _connection.Close();
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("No user with this information");
-                reader.Close();
-                _connection.Close();
+                MessageBox.Show(ex.Message);
             }
-        }
-
-        private void PasswordField_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)

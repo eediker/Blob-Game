@@ -52,7 +52,6 @@ namespace OOP_LAB1
                 command.ExecuteNonQuery();
                 _connection.Close();
 
-
                 SettingsSave.Default.Password = Sha256Hash(PasswordField.Text);
                 SettingsSave.Default.NameSurname = NameSurnameField.Text;
                 SettingsSave.Default.PhoneNumber = PhoneNumberField.Text;
@@ -68,8 +67,6 @@ namespace OOP_LAB1
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         static string Sha256Hash(string Data)

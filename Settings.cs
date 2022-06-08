@@ -46,11 +46,6 @@ namespace OOP_LAB1
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void Custom_CheckedChanged(object sender, EventArgs e)
         {
             Width.Visible = true;
@@ -59,11 +54,6 @@ namespace OOP_LAB1
             label4.Visible = true;
             Colors.Visible = true;
             Shapes.Visible = true;
-        }
-
-        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
-        {
-
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -133,11 +123,6 @@ namespace OOP_LAB1
             this.Hide();
         }
 
-        private void ReturnToLastForm_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void Easy_CheckedChanged(object sender, EventArgs e)
         {
             Width.Visible = false;
@@ -166,11 +151,6 @@ namespace OOP_LAB1
              label4.Visible = false;
              Shapes.Visible = false;
              Colors.Visible = false;
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

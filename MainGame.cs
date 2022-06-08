@@ -35,12 +35,10 @@ namespace OOP_LAB1
             ShowScore.Text = "0";
 
             StartGame(); ;
-
         }
 
         void ButtonArray_click(object sender, EventArgs e)
         {
-
             Button btn_now = sender as Button;
             int i = int.Parse(btn_now.Name.Substring(0, btn_now.Name.IndexOf(',')));
             int j = int.Parse(btn_now.Name.Substring(btn_now.Name.IndexOf(',') + 1));
@@ -54,7 +52,7 @@ namespace OOP_LAB1
             {
                 int x = int.Parse(Remember.Substring(0, Remember.IndexOf(',')));
                 int y = int.Parse(Remember.Substring(Remember.IndexOf(',') + 1));
-                List<QItem> list = new List<QItem>();  
+                List<Cell> list = new List<Cell>();  
 
                 if(minDistance(x,y,i,j,ref list))
                 {
@@ -68,9 +66,7 @@ namespace OOP_LAB1
                     MessageBox.Show("No PATH for this move!");
                 }
 
-
                 flag = false;
-                
                 Remember = "0";
             }
             if (CheckIsOver())
@@ -94,7 +90,6 @@ namespace OOP_LAB1
                         MessageBox.Show(ex.Message);
                     }
                 }
-
                 ShowScore.Text = "0";
                 RestartGame();
             }
@@ -115,7 +110,6 @@ namespace OOP_LAB1
 
             var Settings = new Settings();
             Settings.ShowDialog();
-
 
             if (SettingsSave.Default.Diffuculty != remember)
             {
@@ -206,13 +200,6 @@ namespace OOP_LAB1
             AboutWindow.ShowDialog();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-
         void Random3Objects()
         {
             List<int> list = new List<int>();
@@ -283,14 +270,12 @@ namespace OOP_LAB1
             MessageBox.Show("GAME IS OVER!!!");
             return true;
         }
-
-        class QItem
+        class Cell
         {
             public int row;
             public int col;
-            public int dist;
-            public QItem prev;
-            public QItem(int x, int y, int w)
+            public Cell prev;
+            public Cell(int x, int y)
             {
                 row = x;
                 col = y;
@@ -298,8 +283,7 @@ namespace OOP_LAB1
             }
         };
 
-
-        bool minDistance(int srcX, int srcY, int destX, int destY,ref List<QItem> arr)
+        bool minDistance(int srcX, int srcY, int destX, int destY,ref List<Cell> arr)
         {
             char[,] grid = new char[SettingsSave.Default.Height, SettingsSave.Default.Width];
             for (int i = 0; i < SettingsSave.Default.Height; i++)
@@ -313,9 +297,7 @@ namespace OOP_LAB1
                 }
             }
 
-
-            QItem source = new QItem(0, 0, 0);
-
+            Cell source = new Cell(0, 0);
             // To keep track of visited QItems. Marking
             // blocked cells as visited.
             bool[,] visited = new bool[SettingsSave.Default.Height,SettingsSave.Default.Width] ;
@@ -338,12 +320,12 @@ namespace OOP_LAB1
             }
 
             // applying BFS on matrix cells starting from source
-            List<QItem> list = new List<QItem>();
+            List<Cell> list = new List<Cell>();
             list.Add(source);
             visited[source.row,source.col] = true;
             while (list.Any())
             {
-                QItem p = list[0];
+                Cell p = list[0];
                 list.RemoveAt(0);
 
                 // Destination found;
@@ -356,43 +338,38 @@ namespace OOP_LAB1
                     }
                     return true;
                 }
-
-
                 // moving up
                 if (p.row - 1 >= 0 &&
                     visited[p.row - 1,p.col] == false)
                 {
-                    QItem q = new QItem(p.row - 1, p.col, p.dist + 1);
+                    Cell q = new Cell(p.row - 1, p.col);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row - 1,p.col] = true;
                 }
-
                 // moving down
                 if (p.row + 1 < SettingsSave.Default.Height &&
                     visited[p.row + 1,p.col] == false)
                 {
-                    QItem q = new QItem(p.row + 1, p.col, p.dist + 1);
+                    Cell q = new Cell(p.row + 1, p.col);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row + 1,p.col] = true;
                 }
-
                 // moving left
                 if (p.col - 1 >= 0 &&
                     visited[p.row,p.col - 1] == false)
                 {
-                    QItem q = new QItem(p.row, p.col - 1, p.dist + 1);
+                    Cell q = new Cell(p.row, p.col - 1);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row,p.col - 1] = true;
                 }
-
                 // moving right
                 if (p.col + 1 < SettingsSave.Default.Width &&
                     visited[p.row,p.col + 1] == false)
                 {
-                    QItem q = new QItem(p.row, p.col + 1, p.dist + 1);
+                    Cell q = new Cell(p.row, p.col + 1);
                     q.prev = p;
                     list.Add(q);
                     visited[p.row,p.col + 1] = true;
@@ -401,9 +378,8 @@ namespace OOP_LAB1
             return false;
         }
 
-        void MakeaMove(List<QItem> list)
+        void MakeaMove(List<Cell> list)
         {
-
             for (int m = list.Count-1; m > 0; m--)
             {
                 int sleepTime = 1000;
@@ -460,13 +436,10 @@ namespace OOP_LAB1
 
         void CheckIsScore(Button btn_now)
         {
-
-
             int x = int.Parse(btn_now.Name.Substring(0, btn_now.Name.IndexOf(',')));
             int y = int.Parse(btn_now.Name.Substring(btn_now.Name.IndexOf(',') + 1));
 
             // Checking For Vertical Score
-
             for (int i = 0; i < SettingsSave.Default.Height - 4; i++)
             {
                 int[,] arrX = new int[5, 2];
@@ -496,9 +469,7 @@ namespace OOP_LAB1
                 }
             }
 
-
             // Checking For Horizontal Score
-
             for (int i = 0; i < SettingsSave.Default.Width - 4; i++)
             {
                 int[,] arrY = new int[5, 2];
@@ -531,7 +502,6 @@ namespace OOP_LAB1
                     }
                 }
             }
-
         }
 
         void DestroyBlocks(int[,] arr)
@@ -568,7 +538,7 @@ namespace OOP_LAB1
                 MessageBoxButtons.YesNo);
 
             e.Cancel = (window == DialogResult.No);
-        }
-    }
+        }   
+  }
 }
  
